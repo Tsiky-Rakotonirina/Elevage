@@ -1,0 +1,39 @@
+-Langue : FRANCAIS
+-Nom de table : nomTable_nomDeBase
+-Champ de table : champDeTable
+-Cle primaire table : id
+-Cle secondiare table : idTable 
+-Fichier,dossier,fonction,variable : nomSansCaracteres
+-SI fichier model/controller :
+    -Commencer par Client ou Admin
+    -Terminer par Controller ou Model
+    -ex : ClientConnexionModel
+-SI fichier view : nom-fichier-view 
+-chemin image dans base : /public
+
+Argument du constructeur des controllers :
+            Flight::get('flight.base_url') 
+            -> depuis routes
+Argument du constructeur des models : 
+            Flight::map('Model', function () {return new Model(Flight::db());}); 
+            -> depuis controllers
+
+Mettre dans $url pour index et templates de view : 
+    -Flight::get('flight.base_url') 
+    ->pour les assets 
+
+liens dans view : sans /
+/actionRoute et fonction du controller : meme nom
+nom dans les table = name dans les form/get de view = nom des variables dans model
+    ->meme ordre que dans les tables
+
+Depuis controller :
+    -rediriger avec Flight dans un template dedie
+    -envoyer data contenant au minimum : 
+        -page : sans / et sans .php
+        -url : $this->url 
+
+dans data 
+    -erreur pour les erreur
+    -succes pour les succes
+    -variables pour les listes (pour un foreach en variable -- sans s)
