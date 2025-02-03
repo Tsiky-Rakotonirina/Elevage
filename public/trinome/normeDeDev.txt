@@ -23,7 +23,7 @@ Mettre dans $url pour index et templates de view :
     ->pour les assets 
 
 liens dans view : sans /
-/actionRoute et fonction du controller : meme nom
+/actionRoute et fonction du controller : meme nom (terminer avec : Client ou Admin)
 nom dans les table = name dans les form/get de view = nom des variables dans model
     ->meme ordre que dans les tables
 
