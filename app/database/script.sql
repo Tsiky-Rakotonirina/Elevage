@@ -89,23 +89,3 @@ create table transactionAnimal_elevage(
     foreign key (idEleveurAcheteur) references eleveur_elevage(id),
     foreign key (idAnimal) references animal_elevage(id)
 );
-
--- Query to get the list of animals with their status (alive or dead) based on the given date
-SELECT 
-    a.id,
-    a.idEleveur,
-    a.idEspece,
-    a.image,
-    a.poids,
-    CASE 
-        WHEN DATEDIFF(?, COALESCE(MAX(al.date), '1900-01-01')) > e.nbJourFaim THEN 'Mort'
-        ELSE 'Vivant'
-    END AS statut
-FROM 
-    animal_elevage a
-LEFT JOIN 
-    alimenter_elevage al ON a.id = al.idAnimal
-JOIN 
-    espece_elevage e ON a.idEspece = e.id
-GROUP BY 
-    a.id, a.idEleveur, a.idEspece, a.image, a.poids, e.nbJourFaim;
