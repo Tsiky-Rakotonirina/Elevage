@@ -8,6 +8,7 @@ use flight\net\Router;
 $url=Flight::get('flight.base_url');
 $Controller=new Controller($url);
 $router->get('/', [ $Controller, 'index']);
-$router->get('/connexionEleveur', [ $Controller, 'connexionEleveur']);  
+$router->post('/connexionEleveur', [ $Controller, 'connexionEleveur']);  
 
-
+$TableauDeBordController=new TableauDeBordController($url);
+$router->post('/tableauDeBord', [ $Controller, 'tableauDeBord']);  

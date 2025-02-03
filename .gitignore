@@ -4,6 +4,5 @@ app/config/config.php
 composer.lock
 .vagrant/
 runway
-public/assets/images
 public/assets/bootstrap5
 app/cheatsheets
