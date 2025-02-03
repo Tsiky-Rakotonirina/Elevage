@@ -21,7 +21,27 @@
 <body>
     <header>
         <nav class="menu">
-            
+            <div class="container-menu">
+                <div class="left">
+                    <a href="tableauDeBord">
+                        Tableau de Bord
+                    </a>
+                    <a href="">
+                        Forum
+                    </a>
+                </div>
+                <div class="logo">
+                    <img src="<?php echo $url?>/public/assets/css/image/logo2.jpg" alt="">
+                </div>
+                <div class="right">
+                    <a href="solde">
+                        Solde
+                    </a>
+                    <a href="">
+                        Alimenter les animaux
+                    </a>
+                </div>
+            </div>
         </nav>
     </header>
     <main>

@@ -5,16 +5,17 @@ create table eleveur_elevage(
 );
 
 create table rubrique_elevage(
-    id int,
+    id int auto_increment primary key,
     nom varchar(50),
     effet int
 );
 
 create table mouvementSolde_elevage(
-    id int,
+    id int auto_increment primary key,
     idEleveur int,
     idRubrique int,
-    valeur int,
+    montant int,
+    date date,
     foreign key (idEleveur) references eleveur_elevage(id),
     foreign key (idRubrique) references rubrique_elevage(id)
 );
@@ -41,7 +42,8 @@ create table animal_elevage(
 
 create table alimentation_elevage(
     id int auto_increment primary key,
-    nom varchar(50)
+    nom varchar(50),
+    prix int
 );
 
 create table detailsAlimentation_elevage(
@@ -82,30 +84,9 @@ create table stockAlimentation_elevage(
 
 create table transactionAnimal_elevage(
     id int auto_increment primary key,
-    idEleveurAcheteur int,
     idAnimal int,
     prix int,
     date date,
-    foreign key (idEleveurAcheteur) references eleveur_elevage(id),
+    vendu boolean,
     foreign key (idAnimal) references animal_elevage(id)
 );
-
--- Query to get the list of animals with their status (alive or dead) based on the given date
-SELECT 
-    a.id,
-    a.idEleveur,
-    a.idEspece,
-    a.image,
-    a.poids,
-    CASE 
-        WHEN DATEDIFF(?, COALESCE(MAX(al.date), '1900-01-01')) > e.nbJourFaim THEN 'Mort'
-        ELSE 'Vivant'
-    END AS statut
-FROM 
-    animal_elevage a
-LEFT JOIN 
-    alimenter_elevage al ON a.id = al.idAnimal
-JOIN 
-    espece_elevage e ON a.idEspece = e.id
-GROUP BY 
-    a.id, a.idEleveur, a.idEspece, a.image, a.poids, e.nbJourFaim;

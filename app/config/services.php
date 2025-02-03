@@ -7,6 +7,7 @@ use flight\debug\database\PdoQueryCapture;
 use Tracy\Debugger;
 use app\models\Model;
 use app\models\TableauDeBordModel;
+use app\models\SoldeModel;
 use app\models\AnimalsModel;
 
 /** 
@@ -32,6 +33,10 @@ Flight::map('Model', function () {
 Flight::map('TableauDeBordModel', function () {
     return new TableauDeBordModel(Flight::db());
 });
+Flight::map('SoldeModel', function () {
+    return new SoldeModel(Flight::db());
+});
+
 Flight::map('AnimalsModel', function () {
     return new AnimalsModel(Flight::db());
 });

@@ -9,6 +9,7 @@ class Controller {
 
 	public function __construct($url) {
         $this->url=$url;
+        session_start();
 	}
 
     public function index() {
