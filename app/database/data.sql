@@ -69,3 +69,6 @@ INSERT INTO stockAlimentation_elevage (id, idEleveur, idAlimentation, nbPortion)
 (1, 1, 1, 10),
 (2, 2, 2, 20),
 (3, 3, 3, 30);
+
+INSERT INTO transactionAnimal_elevage(idAnimal,prix,date,vendu) VALUES 
+(2,100,now(),false);

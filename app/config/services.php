@@ -8,6 +8,8 @@ use Tracy\Debugger;
 use app\models\Model;
 use app\models\TableauDeBordModel;
 use app\models\SoldeModel;
+use app\models\AchatVenteModel;
+
 
 /** 
  * @var array $config This comes from the returned array at the bottom of the config.php file
@@ -34,4 +36,7 @@ Flight::map('TableauDeBordModel', function () {
 });
 Flight::map('SoldeModel', function () {
     return new SoldeModel(Flight::db());
+});
+Flight::map('AchatVenteModel', function () {
+    return new AchatVenteModel(Flight::db());
 });

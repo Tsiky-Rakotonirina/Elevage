@@ -55,7 +55,10 @@
                     </div>
                     <div class="bt">
                         <?php if($animal["prixDeVente"]>0) { ?>
-                            <form action="vendreAnimal" method="get">
+                            <form action="venteAnimal" method="get">
+                                <input type="hidden" name="idAnimal" value=<?php echo $animal["animal_id"] ?>>
+                                <input type="hidden" name="prixDeVente" value=<?php echo $animal["prixDeVente"] ?>>
+                                <input type="hidden" name="date" value=<?php echo $date ?> >
                                 <button type="submit">Vendre</button>
                             </form>
                         <?php } else { ?>

@@ -23,4 +23,6 @@ $router->post('/depot',[$SoldeController,'depot']);
 $router->post('/achatAlimentation',[$SoldeController,'achatAlimentation']);
 
 $AchatVenteController=new AchatVenteController($url);
-$router->get('/vendreAnimal',[$AchatVenteController,'vendreAnimal']);
+$router->get('/venteAnimal',[$AchatVenteController,'venteAnimal']);
+$router->get('/listeAnimalEnVente',[$AchatVenteController,'listeAnimalEnVente']);
+$router->get('/achatAnimal',[$AchatVenteController,'achatAnimal']);

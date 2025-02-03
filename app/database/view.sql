@@ -29,3 +29,20 @@ FROM
     mouvementSolde_elevage m
 JOIN
     rubrique_elevage r on m.idRubrique=r.id;
+
+CREATE OR REPLACE VIEW V_TransactionAnimalDetails AS
+SELECT 
+    t.id AS transaction_id,
+    t.idAnimal,
+    t.prix,
+    t.date,
+    t.vendu,
+    e.nom AS espece_nom,
+    e.image,
+    a.poids
+FROM 
+    transactionAnimal_elevage t
+JOIN 
+    animal_elevage a ON t.idAnimal = a.id
+JOIN 
+    espece_elevage e ON a.idEspece = e.id;
