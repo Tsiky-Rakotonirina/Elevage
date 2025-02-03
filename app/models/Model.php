@@ -25,8 +25,7 @@ class Model
         );
         $result = $stmt->get_result();
         if ($result->num_rows > 0) {
-
-            return 1;
+            return $result['id'];
         } else {
             return 0;
         }
