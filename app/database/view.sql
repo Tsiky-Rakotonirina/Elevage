@@ -2,9 +2,8 @@ CREATE VIEW V_AnimalEspece AS
 SELECT 
     a.id AS animal_id,
     a.idEleveur,
-    a.image,
+    e.image,
     a.poids,
-    a.etat,
     e.id AS espece_id,
     e.nom AS espece_nom,
     e.poidsMax,

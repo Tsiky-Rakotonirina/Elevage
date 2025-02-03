@@ -1,0 +1,46 @@
+    // function etat($idAnimal,$date) {
+    //     $sql="SELECT 
+    //         vae.animal_id,
+    //         CASE 
+    //             WHEN DATEDIFF('?', al.date) > vae.nbJourFaim THEN 'false'
+    //             ELSE 'true'
+    //         END as etat 
+    //         FROM 
+    //             V_AnimalEspece vae
+    //         JOIN 
+    //             (select max(date) date, idAnimal from alimenter_elevage where idAnimal=?) al ON vae.animal_id = al.idAnimal";
+    //     $stmt = $this->db->prepare($sql);
+    //     $stmt->execute([$date,$idAnimal]);
+    //     $row = $stmt->fetch();
+    //     if ($row['etat'] =='true') {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
+    // function estVendable($idAnimal) {
+    //     $sql = "SELECT poids,poidsMinVente FROM V_AnimalEspece WHERE = ?";
+    //     $stmt = $this->db->prepare($sql);
+    //     $stmt->execute([$idAnimal]);
+    //     $row = $stmt->fetch();
+    //     if ($row['poids'] >= $row['poidsMinVente']) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
+    // function prixVente($idAnimal,$date) {
+    //     $sql = "SELECT * FROM V_AnimalEspece WHERE animal_id = ?";
+    //     $stmt = $this->db->prepare($sql);
+    //     $stmt->execute([$idAnimal]);
+    //     $row = $stmt->fetch();
+    //     $bool=estVendable($idAnimal);
+    //     $vif=etat($idAnimal,$date);
+    //     if ($bool == true && $vif==true) {
+    //         return $row["poids"]*$row["prixVenteKg"];
+    //     } else {
+    //         return 0;
+    //     }
+    // }

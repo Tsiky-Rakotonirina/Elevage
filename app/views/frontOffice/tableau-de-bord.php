@@ -2,7 +2,7 @@
 <script src="<?=$url ?>/public/assets/js/calendar.js"></script>
 <div class="row">
     <br><br><br>
-    <form id="date-form" action="tableauDeBord" method="POST">
+    <form id="date-form" action="fermeFiltre" method="GET">
         <div class="contain">
             <div class="calendar">
                 <div class="controls">
