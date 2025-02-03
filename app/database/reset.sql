@@ -1,3 +1,3 @@
-drop database ;
-create database ;
-use ;
+drop database elevage;
+create database elevage;
+use elevage;
