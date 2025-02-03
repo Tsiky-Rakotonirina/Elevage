@@ -4,7 +4,7 @@ namespace app\models;
 
 use Flight;
 
-class TableauDeBordModel
+class tableauDeBordModel
 {
     private $db;
 
@@ -12,20 +12,39 @@ class TableauDeBordModel
     {
         $this->db = $db;
     }
-    public function listAllAnimalsByIdEleveur($IdEleveur)
+
+    public function getAllAnimalsByIdeleveur($IdEleveur)
     {
-        $sql = "SELECT * FROM animals WHERE idEleveur = :idEleveur";
+        $sql = "SELECT * FROM V_AnimalEspece WHERE idEleveur = ? ";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':idEleveur', $IdEleveur);
-        $stmt->execute();
+        $stmt->execute([$IdEleveur]);
         return $stmt->fetchAll();
     }
-    public function getEspeceByIdEspece($IdEspece)
+
+
+    public function estVendable($idAnimal) // Correction ici
     {
-        $sql = "SELECT * FROM especes WHERE idEspece = :idEspece";
+        $sql = "SELECT poids, etat, poidsMinVente FROM V_AnimalEspece WHERE animal_id = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':idEspece', $IdEspece);
-        $stmt->execute();
-        return $stmt->fetch();
+        $stmt->execute([$idAnimal]);
+        $row = $stmt->fetch();
+        if ($row['etat'] == true && $row['poids'] >= $row['poidsMinVente']) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function prixVente($idAnimal, $bool)
+    {
+        $sql = "SELECT * FROM V_AnimalEspece WHERE animal_id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$idAnimal]);
+        $row = $stmt->fetch();
+
+        if ($bool == true) {
+        } else {
+            return 0;
+        }
     }
 }
