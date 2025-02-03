@@ -17,18 +17,15 @@ class Controller {
     }
 
     public function connexionEleveur() {
-		// $id=Flight::Model()->connexionEleveur($_POST['nom'],$_POST['motDePasse']);
-        // if($id!=0) {
-        //     $_SESSION['id']=$id;
-        //     $data = ['page'=>'tableau-de-bord','url'=>$this->url];
-        //     Flight::render('template-back',$data);
-        // } else {
-        //     $data = ['erreur' => 'Informations incorrectes'];
-        //     Flight::render('index',$data);
-        // }
-        $data = ['page'=>'tableau-de-bord','url'=>$this->url];
-        Flight::render('template-back',$data);
-
+		$id=Flight::Model()->connexionEleveur($_POST['nom'],$_POST['motDePasse']);
+        if($id!=0) {
+            $_SESSION['id']=$id;
+            $data = ['page'=>'tableau-de-bord','url'=>$this->url];
+            Flight::render('template-front',$data);
+        } else {
+            $data = ['erreur' => 'Informations incorrectes'];
+            Flight::render('index',$data);
+        }
     }
 
 }

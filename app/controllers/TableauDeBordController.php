@@ -16,7 +16,7 @@ class TableauDeBordController {
         $prix=Flight::Model()->prixVente($_SESSION["id"],$_POST["date"]);
         
         $data = ['page'=>'ferme','url'=>$this->url,'tableaux'=>$tableaux];
-        Flight::render('template-back',$data);
+        Flight::render('template-front',$data);
     }
 
     public function fermeFiltre() {
@@ -42,7 +42,7 @@ class TableauDeBordController {
         $prix=Flight::Model()->prixVente($_SESSION["id"],$_POST["date"]);
         
         $data = ['page'=>'ferme','url'=>$this->url,'habitations'=>$habitations];
-        Flight::render('template-back',$data);
+        Flight::render('template-front',$data);
     }
 
 }
