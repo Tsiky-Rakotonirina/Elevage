@@ -5,13 +5,13 @@ create table eleveur_elevage(
 );
 
 create table rubrique_elevage(
-    id int,
+    id int auto_increment primary key,
     nom varchar(50),
     effet int
 );
 
 create table mouvementSolde_elevage(
-    id int,
+    id int auto_increment primary key,
     idEleveur int,
     idRubrique int,
     valeur int,

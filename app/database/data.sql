@@ -1,5 +1,6 @@
 -- Insert test data for eleveur_elevage
 INSERT INTO eleveur_elevage (nom, MotDePasse) VALUES 
+('Pierre', 'Pierre'),
 ('Eleveur1', 'password1'),
 ('Eleveur2', 'password2');
 
