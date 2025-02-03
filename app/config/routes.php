@@ -12,6 +12,7 @@ $url=Flight::get('flight.base_url');
 $Controller=new Controller($url);
 $router->get('/', [ $Controller, 'index']);
 $router->post('/connexionEleveur', [ $Controller, 'connexionEleveur']);  
+$router->post('/reinitialiser', [ $Controller, 'reinitialiser']);  
 
 $TableauDeBordController=new TableauDeBordController($url);
 $router->get('/tableauDeBord', [ $TableauDeBordController, 'tableauDeBord']);   

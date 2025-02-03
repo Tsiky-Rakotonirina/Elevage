@@ -26,4 +26,22 @@ class Model
         }
     }
     
+    public function reinitialiser($date) {
+        $sql = "DELETE FROM mouvementSolde_elevage where date>?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$date]);
+
+        $sql = "DELETE FROM alimenter_elevage where date>?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$date]);
+
+        $sql = "DELETE FROM achatAlimentation_elevage where date>?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$date]);
+
+        $sql = "DELETE FROM transactionAnimal_elevage where date>?";
+        $stmt = $this->db->prepare($sql);+
+        $stmt->execute([$date]);
+
+    }
 }

@@ -29,4 +29,10 @@ class Controller {
         }
     }
 
+    public function reinitialiser() {
+		Flight::Model()->reinitialiser($_POST['dateReinitialiser']);
+        $data = ['page'=>'tableau-de-bord','url'=>$this->url];
+        Flight::render('template-front',$data);
+    }
+
 }

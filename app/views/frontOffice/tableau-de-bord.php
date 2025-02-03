@@ -39,7 +39,7 @@
 ?>
   
 <form action="reinitialiser" method="post">
-    <input name="date" value="2025-02-03">
+    <input type="hidden" name="dateReinitialiser" value="2025-02-03">
     <input type="submit" value="Reinitiliser">
 </form>
 
