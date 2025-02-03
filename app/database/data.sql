@@ -12,7 +12,7 @@ INSERT INTO rubrique_elevage (id, nom, effet) VALUES
 -- Insert test data for espece_elevage
 INSERT INTO espece_elevage (nom, image, poidsMax, poidsMinVente, nbJourFaim, prixVenteKg, pertePoidsJour) VALUES 
 ('Espece1', '/public/assets/images/boeuf1.jpg', 100, 50, 3, 10, 1),
-('Espece2', '/public/assets/images/canard1.jpg',200, 100, 5, 20, 2);
+('Espece2', '/public/assets/images/lapin3.jpg',200, 100, 5, 20, 2);
 
 -- Insert test data for animal_elevage
 INSERT INTO animal_elevage (idEleveur, idEspece, poids) VALUES 
