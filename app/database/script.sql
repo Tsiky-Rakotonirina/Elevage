@@ -35,7 +35,6 @@ create table animal_elevage(
     idEspece int,
     image varchar(100),
     poids int,
-    etat boolean default true,
     foreign key (idEleveur) references eleveur_elevage(id),
     foreign key (idEspece) references espece_elevage(id)
 );
@@ -54,10 +53,11 @@ create table detailsAlimentation_elevage(
 
 create table alimenter_elevage(
     id int auto_increment primary key,
-    
     idAnimal int,
+    idDetailsAlimentation int,
     nbPortion int,
     date date,
+    foreign key (idDetailsAlimentation) references detailsAlimentation_elevage(id),
     foreign key (idAnimal) references animal_elevage(id)
 );
 

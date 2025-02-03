@@ -13,3 +13,4 @@ $router->post('/connexionEleveur', [ $Controller, 'connexionEleveur']);
 
 $TableauDeBordController=new TableauDeBordController($url);
 $router->post('/tableauDeBord', [ $Controller, 'tableauDeBord']);  
+$router->post('/fermeFiltre', [ $Controller, 'fermeFiltre']);  
