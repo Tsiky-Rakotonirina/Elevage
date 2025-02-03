@@ -13,8 +13,7 @@ class TableauDeBordModel
     }
 
     public function fermeFiltre($idEleveur, $date, $poidsMin, $poidsMax, $prixMin, $prixMax, $etat, $espece) {
-        $query = "
-        SELECT 
+        $query = "SELECT 
             vae.animal_id,
             vae.image,
             vae.poids,
@@ -53,15 +52,27 @@ class TableauDeBordModel
             $data[] = $poidsMax;
         }
         if ($prixMin !== null) {
-            $query .= " AND prixDeVente >= ?";
+            $query .= " AND (CASE 
+                WHEN vae.poids >= vae.poidsMinVente AND (DATEDIFF(?, al.date) <= vae.nbJourFaim) THEN vae.poids * vae.prixVenteKg
+                ELSE 0
+                END) >= ?";
+            $data[] = $date;
             $data[] = $prixMin;
         }
         if ($prixMax !== null) {
-            $query .= " AND prixDeVente <= ?";
+            $query .= " AND (CASE 
+                WHEN vae.poids >= vae.poidsMinVente AND (DATEDIFF(?, al.date) <= vae.nbJourFaim) THEN vae.poids * vae.prixVenteKg
+                ELSE 0
+                END) <= ?";
+            $data[] = $date;
             $data[] = $prixMax;
         }
         if ($etat !== null) {
-            $query .= " AND etat = ?";
+            $query .= " AND (CASE 
+                WHEN DATEDIFF(?, al.date) > vae.nbJourFaim THEN 'false'
+                ELSE 'true'
+                END) = ?";
+            $data[] = $date;
             $data[] = $etat;
         }
         if ($espece !== null) {

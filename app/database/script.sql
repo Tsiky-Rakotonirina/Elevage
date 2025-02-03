@@ -14,7 +14,8 @@ create table mouvementSolde_elevage(
     id int auto_increment primary key,
     idEleveur int,
     idRubrique int,
-    valeur int,
+    montant int,
+    date date,
     foreign key (idEleveur) references eleveur_elevage(id),
     foreign key (idRubrique) references rubrique_elevage(id)
 );
@@ -41,7 +42,8 @@ create table animal_elevage(
 
 create table alimentation_elevage(
     id int auto_increment primary key,
-    nom varchar(50)
+    nom varchar(50),
+    prix int
 );
 
 create table detailsAlimentation_elevage(
@@ -82,11 +84,9 @@ create table stockAlimentation_elevage(
 
 create table transactionAnimal_elevage(
     id int auto_increment primary key,
-    idEleveurAcheteur int,
     idAnimal int,
     prix int,
     date date,
-    foreign key (idEleveurAcheteur) references eleveur_elevage(id),
+    vendu boolean,
     foreign key (idAnimal) references animal_elevage(id)
 );
-

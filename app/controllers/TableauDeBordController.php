@@ -14,6 +14,11 @@ class TableauDeBordController {
         }
     }
 
+    public function tableauDeBord() {
+        $data = ['page'=>'tableau-de-bord','url'=>$this->url];
+        Flight::render('template-front',$data);
+    }
+
     public function fermeFiltre() {
         if (!isset($_GET['poidsMin']) || $_GET['poidsMin'] == "") {
             $_GET['poidsMin'] = null;

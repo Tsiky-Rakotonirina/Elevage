@@ -23,7 +23,7 @@
         <nav class="menu">
             <div class="container-menu">
                 <div class="left">
-                    <a href="">
+                    <a href="tableauDeBord">
                         Tableau de Bord
                     </a>
                     <a href="">
@@ -34,8 +34,8 @@
                     <img src="<?php echo $url?>/public/assets/css/image/logo2.jpg" alt="">
                 </div>
                 <div class="right">
-                    <a href="">
-                        Depot
+                    <a href="solde">
+                        Solde
                     </a>
                     <a href="">
                         Alimenter
