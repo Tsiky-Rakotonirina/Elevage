@@ -1,7 +1,7 @@
 create table eleveur_elevage(
     id int auto_increment primary key,
     nom varchar(50),
-    mot de passe varchar(50)
+    motDePasse varchar(50)
 );
 
 create table rubrique_elevage(

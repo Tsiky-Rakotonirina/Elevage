@@ -23,7 +23,13 @@
         
     </header>
     <main>
-        
+        <form action="connexionEleveur">
+            <label for="">Nom : </label>
+            <input type="text" name="nom" required>
+            <label for="">Mot de passe : </label>
+            <input type="password" name="motDePasse" required>
+            <input type="submit" value="Se connecter">
+        </form>
     </main>
     <footer>
         
