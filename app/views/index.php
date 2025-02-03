@@ -28,7 +28,7 @@
                 <img src="<?=$url ?>/public/assets/css/image/logo2.png" alt="">
             </div>
             <h1>Connexion <span style="color:#FF5A5F; font-weight:bold;">Elevage</span></h1>
-            <form action="connexionAdmin" method="post">
+            <form action="connexionEleveur" method="post">
                 <label for="">Nom :</label>
                 <input type="text" placeholder="Entrez votre nom" name="nom" value="Pierre" required >
                 <label for="">Mot de passe :</label>
