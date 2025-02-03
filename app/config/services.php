@@ -7,6 +7,7 @@ use flight\debug\database\PdoQueryCapture;
 use Tracy\Debugger;
 use app\models\Model;
 use app\models\TableauDeBordModel;
+use app\models\AnimalsModel;
 
 /** 
  * @var array $config This comes from the returned array at the bottom of the config.php file
@@ -30,4 +31,7 @@ Flight::map('Model', function () {
 });
 Flight::map('TableauDeBordModel', function () {
     return new TableauDeBordModel(Flight::db());
+});
+Flight::map('AnimalsModel', function () {
+    return new AnimalsModel(Flight::db());
 });
