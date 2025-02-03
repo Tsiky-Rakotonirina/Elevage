@@ -1,7 +1,7 @@
 create table eleveur_elevage(
     id int auto_increment primary key,
     nom varchar(50),
-    mot de passe varchar(50)
+    MotDePasse varchar(50)
 );
 
 create table rubrique_elevage(
@@ -54,10 +54,11 @@ create table detailsAlimentation_elevage(
 
 create table alimenter_elevage(
     id int auto_increment primary key,
+    
     idAnimal int,
     nbPortion int,
     date date,
-    foreign key (idEspece) references espece_elevage(id)
+    foreign key (idAnimal) references animal_elevage(id)
 );
 
 create table achatAlimentation_elevage(
