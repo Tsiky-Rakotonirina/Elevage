@@ -1,6 +1,7 @@
 <?php
 use app\controllers\ApiExampleController;
 use app\controllers\Controller;
+use app\controllers\TableauDeBordController;
 
 use flight\Engine;
 use flight\net\Router;
