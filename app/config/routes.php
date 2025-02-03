@@ -7,4 +7,7 @@ use flight\net\Router;
 
 $url=Flight::get('flight.base_url');
 $Controller=new Controller($url);
-$router->get('/', [ $Controller, 'index']);  
+$router->get('/', [ $Controller, 'index']);
+$router->get('/connexionEleveur', [ $Controller, 'connexionEleveur']);  
+
+
