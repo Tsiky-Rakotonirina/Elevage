@@ -54,9 +54,13 @@
                         <?php } ?>
                     </div>
                     <div class="bt">
-                        <form action="" method="get">
-                            <button type="submit">Blabla</button>
-                        </form>
+                        <?php if($animal["prixDeVente"]>0) { ?>
+                            <form action="vendreAnimal" method="get">
+                                <button type="submit">Vendre</button>
+                            </form>
+                        <?php } else { ?>
+                            <h3>Vente non disponible</h3>
+                        <?php } ?>
                     </div>
                     </div>
                 <div class="espece">
