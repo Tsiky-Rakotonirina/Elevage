@@ -38,7 +38,7 @@
                         Solde
                     </a>
                     <a href="">
-                        Alimenter
+                        Alimenter les animaux
                     </a>
                 </div>
             </div>
