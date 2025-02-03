@@ -46,11 +46,18 @@
                     <h3 id="lien-espece"><i class="fa-classic fa-solid fa-circle-info fa-fw"></i> Info sur l'espece</h3>
                 </div>
                 <div class="etat">
-                    <?php if($animal["etat"]==true) { ?>
+                    <div class="message">
+                        <?php if($animal["etat"]==true) { ?>
                             <h2 style="color:green;">V I V A N T</h2>
                         <?php } else { ?>
                             <h3 style="color:black">M O R T</h3>
                         <?php } ?>
+                    </div>
+                    <div class="bt">
+                        <form action="" method="get">
+                            <button type="submit">Blabla</button>
+                        </form>
+                    </div>
                     </div>
                 <div class="espece">
                     <img src="<?php echo $url ?>/public/assets/css/image/logo2.jpg" alt="">
