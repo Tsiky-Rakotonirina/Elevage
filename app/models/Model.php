@@ -17,10 +17,11 @@ class Model
     {
         $sql = "SELECT * FROM eleveur_elevage WHERE nom = ? AND MotDePasse = ? ";
         $stmt = $this->db->prepare($sql);
-        $data=array($nom,$mdp);
-        $stmt->execute($data);
+
+        $stmt->execute([$nom, $mdp]);
         $result = $stmt->fetch();
-        if ($stmt->rowCount() > 0) {
+
+        if ($stmt->rowcount() > 0) {
             return $result['id'];
         } else {
             return 0;

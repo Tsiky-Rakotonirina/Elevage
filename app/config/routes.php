@@ -1,4 +1,5 @@
 <?php
+
 use app\controllers\ApiExampleController;
 use app\controllers\Controller;
 use app\controllers\TableauDeBordController;
@@ -7,6 +8,7 @@ use app\controllers\AchatVenteController;
 use app\controllers\AdminEspeceController;
 use app\controllers\AdminAnimalController;
 
+use app\controllers\AnimalsController;
 use flight\Engine;
 use flight\net\Router;
 
@@ -18,9 +20,9 @@ $router->post('/reinitialiser', [ $Controller, 'reinitialiser']);
 $router->post('/connexionAdmin', [ $Controller, 'connexionAdmin']);  
 $router->get('/menuAdmin', [ $Controller, 'menuAdmin']);  
 
-$TableauDeBordController=new TableauDeBordController($url);
-$router->get('/tableauDeBord', [ $TableauDeBordController, 'tableauDeBord']);   
-$router->get('/fermeFiltre', [ $TableauDeBordController, 'fermeFiltre']);   
+$TableauDeBordController = new TableauDeBordController($url);
+$router->get('/tableauDeBord', [$TableauDeBordController, 'tableauDeBord']);
+$router->get('/fermeFiltre', [$TableauDeBordController, 'fermeFiltre']);
 
 $SoldeController=new SoldeController($url);
 $router->get('/solde',[$SoldeController,'solde']);
@@ -41,3 +43,7 @@ $router->get('/listeAnimal',[$AdminAnimalController,'listeAnimal']);
 $router->post('/ajoutAnimal',[$AdminAnimalController,'ajoutAnimal']);
 
 
+
+$AnimalsController = new AnimalsController($url);
+$router->get('/nourirView', [$AnimalsController, 'nourirView']);
+$router->post('/nourrir', [$AnimalsController, 'nourrirAnimal']);
