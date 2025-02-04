@@ -9,7 +9,8 @@ use app\models\Model;
 use app\models\TableauDeBordModel;
 use app\models\SoldeModel;
 use app\models\AchatVenteModel;
-
+use app\models\AdminAnimalModel;
+use app\models\AdminEspeceModel;
 
 /** 
  * @var array $config This comes from the returned array at the bottom of the config.php file
@@ -39,4 +40,10 @@ Flight::map('SoldeModel', function () {
 });
 Flight::map('AchatVenteModel', function () {
     return new AchatVenteModel(Flight::db());
+});
+Flight::map('AdminAnimalModel', function () {
+    return new AdminAnimalModel(Flight::db());
+});
+Flight::map('AdminEspeceModel', function () {
+    return new AdminEspeceModel(Flight::db());
 });

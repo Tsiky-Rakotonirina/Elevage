@@ -35,4 +35,22 @@ class Controller {
         Flight::render('template-front',$data);
     }
 
+    public function menu() {
+        $caroussel=Flight::Model()->caroussel();
+        $data = ['page'=>'menu','url'=>$this->url,'caroussel'=>$caroussel];
+        Flight::render('template-back',$data);
+    }
+
+    public function connexionAdmin() {
+		$id=Flight::Model()->connexionAdmin($_POST['nom'],$_POST['motDePasse']);
+        if($id!=0) {
+            $this->menu();
+        } else {
+            $data = ['page'=>'','url'=>$this->url];
+            Flight::render('index',$data);
+        }
+    }
+
+    
+
 }

@@ -1,3 +1,9 @@
+create table admin_elevage(
+    id int auto_increment primary key,
+    nom varchar(50),
+    MotDePasse varchar(50)
+);
+
 create table eleveur_elevage(
     id int auto_increment primary key,
     nom varchar(50),
@@ -89,4 +95,8 @@ create table transactionAnimal_elevage(
     date date,
     vendu boolean,
     foreign key (idAnimal) references animal_elevage(id)
+);
+
+create table caroussel(
+    image varchar(100)
 );

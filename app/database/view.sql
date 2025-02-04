@@ -46,3 +46,4 @@ JOIN
     animal_elevage a ON t.idAnimal = a.id
 JOIN 
     espece_elevage e ON a.idEspece = e.id;
+

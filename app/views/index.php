@@ -28,7 +28,7 @@
             <div class="logo">
                 <img src="<?=$url ?>/public/assets/css/image/logo2.png" alt="">
             </div>
-            <h1>Connexion <span style="color:#FF5A5F; font-weight:bold;">Elevage</span></h1>
+            <h1>Connexion <span style="color:#FF5A5F; font-weight:bold;">Eleveur</span></h1>
             <form action="connexionEleveur" method="post">
                 <label for="">Nom :</label>
                 <input type="text" placeholder="Entrez votre nom" name="nom" value="Pierre" required >
@@ -42,6 +42,14 @@
                 </div>
             <?php } ?>
         </div>
+            <h1>Connexion <span style="color:#FF5A5F; font-weight:bold;">Admin</span></h1>
+            <form action="connexionAdmin"  method="post">
+                <label for="">Nom :</label>
+                <input type="text" placeholder="Entrez votre nom" name="nom" value="Ezechiel" required >
+                <label for="">Mot de passe :</label>
+                <input type="password" placeholder="Entrez votre mot de passe" name="motDePasse" value="Ezechiel" required >
+                <button type="submit">Je suis Admin</button>
+            </form>
     </main>
     <footer>
         

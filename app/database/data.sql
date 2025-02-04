@@ -1,9 +1,52 @@
 -- Données de test pour la table `eleveur_elevage`
 INSERT INTO eleveur_elevage (id, nom, MotDePasse) VALUES
-(1, 'Jean Dupont', 'password123'),
+(1, 'Pierre ', 'Pierre'),
 (2, 'Marie Curie', 'securepass'),
-(3, 'Paul Martin', 'mypassword'),
-(4, 'Pierre', 'Pierre');
+(3, 'Paul Martin', 'mypassword');
+
+INSERT INTO admin_elevage (id, nom, MotDePasse) VALUES
+(1, 'Ezechiel', 'Ezechiel');
+
+-- Création de la table `caroussel`
+CREATE TABLE caroussel (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    image VARCHAR(100) NOT NULL
+);
+
+-- Insertion des images dans la table `caroussel`
+INSERT INTO caroussel (image) VALUES
+('/public/assets/caroussel/boeuf1.jpg'),
+('/public/assets/caroussel/canard1.jpg'),
+('/public/assets/caroussel/chevre1.jpg'),
+('/public/assets/caroussel/coq1.jpg'),
+('/public/assets/caroussel/boeuf2.jpg'),
+('/public/assets/caroussel/coq2.jpg'),
+('/public/assets/caroussel/coq3.jpg'),
+('/public/assets/caroussel/boeuf3.jpg'),
+('/public/assets/caroussel/lapin2.jpg'),
+('/public/assets/caroussel/boeuf4.jpg'),
+('/public/assets/caroussel/canard2.jpg'),
+('/public/assets/caroussel/chevre2.jpg'),
+('/public/assets/caroussel/chevre3.jpg'),
+('/public/assets/caroussel/coq4.jpg'),
+('/public/assets/caroussel/dindon1.jpg'),
+('/public/assets/caroussel/mouton2.jpg'),
+('/public/assets/caroussel/lapin1.jpg'),
+('/public/assets/caroussel/dindon2.jpg'),
+('/public/assets/caroussel/lapin3.jpg'),
+('/public/assets/caroussel/mouton1.jpg'),
+('/public/assets/caroussel/mouton3.jpg');
+
+-- Insertion des images supplémentaires dans la table `caroussel`
+INSERT INTO caroussel (image) VALUES
+('/public/assets/images/boeuf.jpg'),
+('/public/assets/images/lapin.jpg'),
+('/public/assets/images/canard.jpg'),
+('/public/assets/images/chevre.jpg'),
+('/public/assets/images/coq.jpg'),
+('/public/assets/images/dindon.jpg'),
+('/public/assets/images/mouton.jpg'),
+('/public/assets/images/poule.jpg');
 
 -- Données de test pour la table `rubrique_elevage`
 INSERT INTO rubrique_elevage (id, nom, effet) VALUES

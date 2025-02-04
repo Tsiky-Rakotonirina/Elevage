@@ -4,6 +4,8 @@ use app\controllers\Controller;
 use app\controllers\TableauDeBordController;
 use app\controllers\SoldeController;
 use app\controllers\AchatVenteController;
+use app\controllers\AdminEspeceController;
+use app\controllers\AdminAnimalController;
 
 use flight\Engine;
 use flight\net\Router;
@@ -12,7 +14,9 @@ $url=Flight::get('flight.base_url');
 $Controller=new Controller($url);
 $router->get('/', [ $Controller, 'index']);
 $router->post('/connexionEleveur', [ $Controller, 'connexionEleveur']);  
-$router->post('/reinitialiser', [ $Controller, 'reinitialiser']);  
+$router->post('/reinitialiser', [ $Controller, 'reinitialiser']); 
+$router->post('/connexionAdmin', [ $Controller, 'connexionAdmin']);  
+$router->get('/menuAdmin', [ $Controller, 'menuAdmin']);  
 
 $TableauDeBordController=new TableauDeBordController($url);
 $router->get('/tableauDeBord', [ $TableauDeBordController, 'tableauDeBord']);   
@@ -27,3 +31,13 @@ $AchatVenteController=new AchatVenteController($url);
 $router->get('/venteAnimal',[$AchatVenteController,'venteAnimal']);
 $router->get('/listeAnimalEnVente',[$AchatVenteController,'listeAnimalEnVente']);
 $router->get('/achatAnimal',[$AchatVenteController,'achatAnimal']);
+
+$AdminEspeceController=new AdminEspeceController($url);
+$router->get('/listeEspece',[$AdminEspeceController,'listeEspece']);
+$router->post('/modifierEspece',[$AdminEspeceController,'modifierEspece']);
+
+$AdminAnimalController=new AdminAnimalController($url);
+$router->get('/listeAnimal',[$AdminEspeceController,'listeAnimal']);
+$router->post('/ajoutAnimal',[$AdminEspeceController,'ajoutAnimal']);
+
+
