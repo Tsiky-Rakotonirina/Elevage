@@ -1,9 +1,8 @@
 -ajax
 
--achat de animal disparait
-
 -test backOffice
 
--affichage json -- message succes / erreur
+-data
 
--
+-reinitialiser
+

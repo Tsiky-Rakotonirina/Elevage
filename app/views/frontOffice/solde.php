@@ -9,7 +9,7 @@
         <div class="depot">
             <form action="depot" method="post">
                 <div class="title">
-                    <img src="<?php echo $url?>/public/assets/css/image/monney.png" alt="">
+                    <img src="<?=$url?>/public/assets/css/image/monney.png" alt="">
                     <h3 style="color:green">Depot</h3>
                 </div>
                 <div class="container-input">

@@ -8,7 +8,7 @@ use Tracy\Debugger;
 use app\models\Model;
 use app\models\TableauDeBordModel;
 use app\models\SoldeModel;
-use app\models\AchatVenteModel;
+use app\models\AchatModel;
 use app\models\AdminAnimalModel;
 use app\models\AdminEspeceModel;
 use app\models\AnimalsModel;
@@ -39,15 +39,12 @@ Flight::map('TableauDeBordModel', function () {
 Flight::map('SoldeModel', function () {
     return new SoldeModel(Flight::db());
 });
-Flight::map('AchatVenteModel', function () {
-    return new AchatVenteModel(Flight::db());
+Flight::map('AchatModel', function () {
+    return new AchatModel(Flight::db());
 });
 Flight::map('AdminAnimalModel', function () {
     return new AdminAnimalModel(Flight::db());
 });
 Flight::map('AdminEspeceModel', function () {
     return new AdminEspeceModel(Flight::db());
-});
-Flight::map('AnimalsModel', function () {
-    return new AnimalsModel(Flight::db());
 });

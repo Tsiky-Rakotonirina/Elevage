@@ -7,12 +7,6 @@ INSERT INTO eleveur_elevage (id, nom, MotDePasse) VALUES
 INSERT INTO admin_elevage (id, nom, MotDePasse) VALUES
 (1, 'Ezechiel', 'Ezechiel');
 
--- Création de la table `caroussel`
-CREATE TABLE caroussel (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    image VARCHAR(100) NOT NULL
-);
-
 -- Insertion des images dans la table `caroussel`
 INSERT INTO caroussel (image) VALUES
 ('/public/assets/caroussel/boeuf1.jpg'),
@@ -37,17 +31,6 @@ INSERT INTO caroussel (image) VALUES
 ('/public/assets/caroussel/mouton1.jpg'),
 ('/public/assets/caroussel/mouton3.jpg');
 
--- Insertion des images supplémentaires dans la table `caroussel`
-INSERT INTO caroussel (image) VALUES
-('/public/assets/images/boeuf.jpg'),
-('/public/assets/images/lapin.jpg'),
-('/public/assets/images/canard.jpg'),
-('/public/assets/images/chevre.jpg'),
-('/public/assets/images/coq.jpg'),
-('/public/assets/images/dindon.jpg'),
-('/public/assets/images/mouton.jpg'),
-('/public/assets/images/poule.jpg');
-
 -- Données de test pour la table `rubrique_elevage`
 INSERT INTO rubrique_elevage (id, nom, effet) VALUES
 (1, 'Achat Alimentation', -1),
@@ -57,23 +40,23 @@ INSERT INTO rubrique_elevage (id, nom, effet) VALUES
 
 -- Données de test pour la table `mouvementSolde_elevage`
 INSERT INTO mouvementSolde_elevage (id, idEleveur, idRubrique, montant) VALUES
-(1, 1, 1, 100),
+(1, 1, 2, 100),
 (2, 2, 2, 200),
 (3, 3, 3, 150);
 
 -- Données de test pour la table `espece_elevage`
-INSERT INTO espece_elevage (id, nom, image, poidsMax, poidsMinVente, nbJourFaim, prixVenteKg, pertePoidsJour) VALUES
-(1, 'Boeuf', '/public/assets/images/boeuf.jpg', 800, 500, 7, 5, 2),
-(2, 'Lapin', '/public/assets/images/lapin.jpg', 5, 3, 2, 10, 1),
-(3, 'Canard', '/public/assets/images/canard.jpg', 6, 4, 3, 12, 1),
-(4, 'Chevre', '/public/assets/images/chevre.jpg', 60, 40, 5, 8, 2),
-(5, 'Coq', '/public/assets/images/coq.jpg', 7, 5, 3, 15, 1),
-(6, 'Dindon', '/public/assets/images/dindon.jpg', 10, 7, 4, 20, 2),
-(7, 'Mouton', '/public/assets/images/mouton.jpg', 70, 50, 6, 10, 3),
-(8, 'Poule', '/public/assets/images/poule.jpg', 4, 2, 2, 8, 1);
+INSERT INTO espece_elevage (id, nom, image, poidsMax, poidsMinVente, nbJourFaim, prixVenteKg, pertePoidsJour, quotaJournalier) VALUES
+(1, 'Boeuf', '/public/assets/images/boeuf.jpg', 800, 500, 7, 5, 2, 10),
+(2, 'Lapin', '/public/assets/images/lapin.jpg', 5, 3, 2, 10, 1, 2),
+(3, 'Canard', '/public/assets/images/canard.jpg', 6, 4, 3, 12, 1, 3),
+(4, 'Chevre', '/public/assets/images/chevre.jpg', 60, 40, 5, 8, 2, 5),
+(5, 'Coq', '/public/assets/images/coq.jpg', 7, 5, 3, 15, 1, 3),
+(6, 'Dindon', '/public/assets/images/dindon.jpg', 10, 7, 4, 20, 2, 4),
+(7, 'Mouton', '/public/assets/images/mouton.jpg', 70, 50, 6, 10, 3, 6),
+(8, 'Poule', '/public/assets/images/poule.jpg', 4, 2, 2, 8, 1, 2);
 
 -- Données de test pour la table `animal_elevage`
-INSERT INTO animal_elevage (id, idEleveur, idEspece, poids) VALUES
+INSERT INTO animal_elevage (id, idEleveur, idEspece, poidsInitial) VALUES
 (1, 1, 1, 600),
 (2, 2, 2, 4),
 (3, 3, 3, 250),
@@ -83,8 +66,16 @@ INSERT INTO animal_elevage (id, idEleveur, idEspece, poids) VALUES
 (7, 1, 7, 65),
 (8, 2, 8, 3);
 
+-- Données de test pour la table `animal_elevage` avec idEleveur=1
+INSERT INTO animal_elevage (id, idEleveur, idEspece, poidsInitial, autoVente, dateVente, dateMort) VALUES
+(1, 1, 1, 600, true, '2025-01-01', '2025-02-01'),
+(2, 1, 2, 4, false, '2025-01-15', '2025-02-15'),
+(3, 1, 3, 5, true, '2025-01-20', '2025-02-20'),
+(4, 1, 4, 55, false, '2025-01-25', '2025-02-25'),
+(5, 1, 5, 6, true, '2025-01-30', '2025-02-28');
+
 -- Données de test pour la table `alimentation_elevage`
-INSERT INTO alimentation_elevage (id, nom,prix) VALUES
+INSERT INTO alimentation_elevage (id, nom, prix) VALUES
 (1, 'Foin',20),
 (2, 'Grains',50),
 (3, 'Maïs',10);
@@ -92,25 +83,34 @@ INSERT INTO alimentation_elevage (id, nom,prix) VALUES
 -- Données de test pour la table `detailsAlimentation_elevage`
 INSERT INTO detailsAlimentation_elevage (id, idEspece, idAlimentation, gain) VALUES
 (1, 1, 1, 50),
-(2, 2, 2, 30),
-(3, 3, 3, 40);
-
--- Données de test pour la table `alimenter_elevage`
-INSERT INTO alimenter_elevage (id, idAnimal, idDetailsAlimentation, nbPortion, date) VALUES
-(1, 1, 1, 3, '2023-01-01'),
-(2, 2, 2, 2, '2023-01-02'),
-(3, 3, 3, 4, '2023-01-03');
-
--- Données de test pour la table `achatAlimentation_elevage`
-INSERT INTO achatAlimentation_elevage (id, idEleveur, idAlimentation, date, nbPortion) VALUES
-(1, 1, 1, '2023-01-01', 10),
-(2, 2, 2, '2023-01-02', 20),
-(3, 3, 3, '2023-01-03', 30);
+(2, 1, 2, 40),
+(3, 1, 3, 30),
+(4, 2, 1, 20),
+(5, 2, 2, 30),
+(6, 2, 3, 25),
+(7, 3, 1, 35),
+(8, 3, 2, 45),
+(9, 3, 3, 40),
+(10, 4, 1, 50),
+(11, 4, 2, 55),
+(12, 4, 3, 60),
+(13, 5, 1, 20),
+(14, 5, 2, 25),
+(15, 5, 3, 30),
+(16, 6, 1, 40),
+(17, 6, 2, 45),
+(18, 6, 3, 50),
+(19, 7, 1, 30),
+(20, 7, 2, 35),
+(21, 7, 3, 40),
+(22, 8, 1, 25),
+(23, 8, 2, 30),
+(24, 8, 3, 35);
 
 -- Données de test pour la table `stockAlimentation_elevage`
 INSERT INTO stockAlimentation_elevage (id, idEleveur, idAlimentation, nbPortion) VALUES
-(1, 1, 1, 10),
-(2, 2, 2, 20),
+(1, 1, 1, 500),
+(2, 2, 2, 500),
 (3, 3, 3, 30);
 
 INSERT INTO transactionAnimal_elevage(idAnimal,prix,date,vendu) VALUES 

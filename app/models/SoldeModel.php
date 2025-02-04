@@ -88,12 +88,6 @@ class SoldeModel
         if($this->solde($idEleveur)<$montant) {
             return $montant-$this->solde($idEleveur);
         }
-        $idRubrique=$this->getRubrique('Depot');
-        $query = "INSERT INTO achatAlimentation_elevage (idEleveur,nbPortion,idAlimentation,date) VALUES (?,?,?,now())";
-        $stmt = $this->db->prepare($query);
-        $data=array($idEleveur,$nbPortion,$idAlimentation);
-        $stmt->execute($data);
-        $data=null;
         
         $idRubrique=$this->getRubrique('Achat alimentation');
         $query = "INSERT INTO mouvementSolde_elevage (idEleveur,montant,idRubrique,date) VALUES (?,?,?,now())";

@@ -3,14 +3,18 @@ SELECT
     a.id AS animal_id,
     a.idEleveur,
     e.image,
-    a.poids,
+    a.poidsInitial,
+    a.autoVente,
+    a.dateVente,
+    a.dateMort,
     e.id AS espece_id,
     e.nom AS espece_nom,
     e.poidsMax,
     e.poidsMinVente,
     e.nbJourFaim,
     e.prixVenteKg,
-    e.pertePoidsJour
+    e.pertePoidsJour,
+    e.quotaJournalier
 FROM 
     animal_elevage a
 JOIN 
@@ -39,7 +43,7 @@ SELECT
     t.vendu,
     e.nom AS espece_nom,
     e.image,
-    a.poids
+    a.poidsInitial
 FROM 
     transactionAnimal_elevage t
 JOIN 
