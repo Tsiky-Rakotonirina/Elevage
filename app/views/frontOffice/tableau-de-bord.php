@@ -1,5 +1,11 @@
 <link rel="stylesheet" href="<?=$url ?>/public/assets/css/tableau-de-bord.css">
 <script src="<?=$url ?>/public/assets/js/calendar.js"></script>
+<div class="reinitialiser">
+    <form action="reinitialiser" method="post">
+        <input name="date" value="2025-02-03" readonly>
+        <button type="submit">Reinitiliser</button>
+    </form>
+</div>
 <div class="row">
     <br><br><br>
     <form id="date-form" action="fermeFiltre" method="GET">
@@ -21,10 +27,10 @@
     </form>
 </div>
 <h1>
-<?php
-    if (isset($_POST['date'])) {
-        $selectedDate = $_POST['selected_date'];
-        $type=$_POST['type'];
+    <?php
+        if (isset($_POST['date'])) {
+            $selectedDate = $_POST['selected_date'];
+            $type=$_POST['type'];
 
         // Valider la date
         if (DateTime::createFromFormat('Y-m-d', $selectedDate)) {
