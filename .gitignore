@@ -8,4 +8,4 @@ public/assets/bootstrap5
 app/cheatsheets
 app/config/config.php
 public/assets/images
-public/assets/css/image
+# public/assets/css/image
