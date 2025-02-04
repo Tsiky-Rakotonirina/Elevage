@@ -7,12 +7,6 @@ INSERT INTO eleveur_elevage (id, nom, MotDePasse) VALUES
 INSERT INTO admin_elevage (id, nom, MotDePasse) VALUES
 (1, 'Ezechiel', 'Ezechiel');
 
--- Création de la table `caroussel`
-CREATE TABLE caroussel (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    image VARCHAR(100) NOT NULL
-);
-
 -- Insertion des images dans la table `caroussel`
 INSERT INTO caroussel (image) VALUES
 ('/public/assets/caroussel/boeuf1.jpg'),
@@ -36,17 +30,6 @@ INSERT INTO caroussel (image) VALUES
 ('/public/assets/caroussel/lapin3.jpg'),
 ('/public/assets/caroussel/mouton1.jpg'),
 ('/public/assets/caroussel/mouton3.jpg');
-
--- Insertion des images supplémentaires dans la table `caroussel`
-INSERT INTO caroussel (image) VALUES
-('/public/assets/images/boeuf.jpg'),
-('/public/assets/images/lapin.jpg'),
-('/public/assets/images/canard.jpg'),
-('/public/assets/images/chevre.jpg'),
-('/public/assets/images/coq.jpg'),
-('/public/assets/images/dindon.jpg'),
-('/public/assets/images/mouton.jpg'),
-('/public/assets/images/poule.jpg');
 
 -- Données de test pour la table `rubrique_elevage`
 INSERT INTO rubrique_elevage (id, nom, effet) VALUES
@@ -73,7 +56,7 @@ INSERT INTO espece_elevage (id, nom, image, poidsMax, poidsMinVente, nbJourFaim,
 (8, 'Poule', '/public/assets/images/poule.jpg', 4, 2, 2, 8, 1);
 
 -- Données de test pour la table `animal_elevage`
-INSERT INTO animal_elevage (id, idEleveur, idEspece, poids) VALUES
+INSERT INTO animal_elevage (id, idEleveur, idEspece, poidsInitial) VALUES
 (1, 1, 1, 600),
 (2, 2, 2, 4),
 (3, 3, 3, 250),
@@ -84,7 +67,7 @@ INSERT INTO animal_elevage (id, idEleveur, idEspece, poids) VALUES
 (8, 2, 8, 3);
 
 -- Données de test pour la table `alimentation_elevage`
-INSERT INTO alimentation_elevage (id, nom,prix) VALUES
+INSERT INTO alimentation_elevage (id, nom, prix) VALUES
 (1, 'Foin',20),
 (2, 'Grains',50),
 (3, 'Maïs',10);
@@ -94,12 +77,6 @@ INSERT INTO detailsAlimentation_elevage (id, idEspece, idAlimentation, gain) VAL
 (1, 1, 1, 50),
 (2, 2, 2, 30),
 (3, 3, 3, 40);
-
--- Données de test pour la table `alimenter_elevage`
-INSERT INTO alimenter_elevage (id, idAnimal, idDetailsAlimentation, nbPortion, date) VALUES
-(1, 1, 1, 3, '2023-01-01'),
-(2, 2, 2, 2, '2023-01-02'),
-(3, 3, 3, 4, '2023-01-03');
 
 -- Données de test pour la table `achatAlimentation_elevage`
 INSERT INTO achatAlimentation_elevage (id, idEleveur, idAlimentation, date, nbPortion) VALUES

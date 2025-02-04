@@ -34,14 +34,18 @@ create table espece_elevage(
     poidsMinVente int,
     nbJourFaim int,
     prixVenteKg int,
-    pertePoidsJour int
+    pertePoidsJour int,
+    quotaJournalier int 
 );
 
 create table animal_elevage(
     id int auto_increment primary key,
     idEleveur int,
     idEspece int,
-    poids int,
+    poidsInitial int,
+    autoVente boolean,
+    dateVente date,
+    dateMort date,
     foreign key (idEleveur) references eleveur_elevage(id),
     foreign key (idEspece) references espece_elevage(id)
 );
@@ -57,26 +61,6 @@ create table detailsAlimentation_elevage(
     idEspece int,
     idAlimentation int,
     gain int
-);
-
-create table alimenter_elevage(
-    id int auto_increment primary key,
-    idAnimal int,
-    idDetailsAlimentation int,
-    nbPortion int,
-    date date,
-    foreign key (idDetailsAlimentation) references detailsAlimentation_elevage(id),
-    foreign key (idAnimal) references animal_elevage(id)
-);
-
-create table achatAlimentation_elevage(
-    id int auto_increment primary key,
-    idEleveur int,
-    idAlimentation int,
-    date date,
-    nbPortion int,
-    foreign key (idEleveur) references eleveur_elevage(id),
-    foreign key (idAlimentation) references alimentation_elevage(id)
 );
 
 create table stockAlimentation_elevage(

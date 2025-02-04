@@ -62,6 +62,13 @@ class AdminEspeceModel
         $stmt->execute($data);
     }
 
+    public function modifierEspeceQuotaJournalier($id, $quotaJournalier) {
+        $query="UPDATE espece_elevage SET quotaJournalier=? WHERE id=?";
+        $stmt = $this->db->prepare($query);
+        $data=array($quotaJournalier, $id);
+        $stmt->execute($data);
+    }
+
     public function modifierEspecePertePoidsJour($id, $pertePoidsJour) {
         $query="UPDATE espece_elevage SET pertePoidsJour=? WHERE id=?";
         $stmt = $this->db->prepare($query);

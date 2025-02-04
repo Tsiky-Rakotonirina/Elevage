@@ -35,6 +35,9 @@ class AdminEspeceController {
         if (isset($_POST['prixVenteKg']) && $_POST['prixVenteKg'] != null && $_POST['prixVenteKg'] != "") {
             Flight::AdminEspeceModel()->modifierEspecePrixVenteKg($id, $_POST['prixVenteKg']);
         }
+        if (isset($_POST['quotaJournalier']) && $_POST['quotaJournalier'] != null && $_POST['quotaJournalier'] != "") {
+            Flight::AdminEspeceModel()->modifierEspeceQuotaJournalier($id, $_POST['quotaJournalier']);
+        }
         if (isset($_POST['pertePoidsJour']) && $_POST['pertePoidsJour'] != null && $_POST['pertePoidsJour'] != "") {
             Flight::AdminEspeceModel()->modifierEspecePertePoidsJour($id, $_POST['pertePoidsJour']);
         }

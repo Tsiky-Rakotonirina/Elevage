@@ -29,7 +29,7 @@ $url = Flight::get('flight.base_url');
                         Tableau de Bord
                     </a>
                     <a href="listeAnimalEnVente">
-                        Achat - Vente
+                        Achat
                     </a>
                 </div>
                 <div class="logo">
@@ -38,9 +38,6 @@ $url = Flight::get('flight.base_url');
                 <div class="right">
                     <a href="solde">
                         Solde
-                    </a>
-                    <a href="nourirView">
-                        Nourir les animaux
                     </a>
                 </div>
             </div>

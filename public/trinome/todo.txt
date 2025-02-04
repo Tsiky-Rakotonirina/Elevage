@@ -4,6 +4,22 @@
 
 -test backOffice
 
--affichage json -- message succes / erreur
+-data
 
--
+
+--Peut pas nourir tous les jours
+
+--champ quota journalier en kg dans espece
+    -un animal mange son quota ou non
+
+--on nourrit en priorite les animaux plus proche d etre vendu
+
+--champ autovente dans animal 
+    -configurer dans animal
+    -si oui directement vendu 
+    -si non mettre une date de vente 
+
+--champ date de mort animal
+
+
+-google sheets

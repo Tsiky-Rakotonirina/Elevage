@@ -21,7 +21,7 @@ class AdminAnimalController {
     }
 
     public function ajoutAnimal() {
-        Flight::AdminAnimalModel()->ajoutAnimal($idEspece,$poids);
+        Flight::AdminAnimalModel()->ajoutAnimal($_POST["idEspece"],$_POST["poids"],$_POST["dateMort"]);
         $this->listeAnimal();
     }
     
