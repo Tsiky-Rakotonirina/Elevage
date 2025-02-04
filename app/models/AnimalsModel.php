@@ -87,7 +87,7 @@ class AnimalsModel
         foreach ($data as $row) {
             $nbPortion = $row['nbPortion'];
             $gain = $row['gain'];
-            echo $row['gain'];
+
             if (($poid + $poid * $gain / 100 * $nbPortion) >= $poids_max || ($poid == $poids_max)) {
                 $poid = $poids_max;
             } else {
