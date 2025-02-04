@@ -7,8 +7,8 @@ use app\controllers\SoldeController;
 use app\controllers\AchatVenteController;
 use app\controllers\AdminEspeceController;
 use app\controllers\AdminAnimalController;
-
 use app\controllers\AnimalsController;
+
 use flight\Engine;
 use flight\net\Router;
 
@@ -34,6 +34,10 @@ $router->get('/venteAnimal',[$AchatVenteController,'venteAnimal']);
 $router->get('/listeAnimalEnVente',[$AchatVenteController,'listeAnimalEnVente']);
 $router->get('/achatAnimal',[$AchatVenteController,'achatAnimal']);
 
+$AnimalsController = new AnimalsController($url);
+$router->get('/nourirView', [$AnimalsController, 'nourirView']);
+$router->post('/nourrir', [$AnimalsController, 'nourrirAnimal']);
+
 $AdminEspeceController=new AdminEspeceController($url);
 $router->get('/listeEspece',[$AdminEspeceController,'listeEspece']);
 $router->post('/modifierEspece',[$AdminEspeceController,'modifierEspece']);
@@ -44,6 +48,4 @@ $router->post('/ajoutAnimal',[$AdminAnimalController,'ajoutAnimal']);
 
 
 
-$AnimalsController = new AnimalsController($url);
-$router->get('/nourirView', [$AnimalsController, 'nourirView']);
-$router->post('/nourrir', [$AnimalsController, 'nourrirAnimal']);
+

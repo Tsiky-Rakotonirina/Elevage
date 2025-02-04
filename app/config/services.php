@@ -11,6 +11,7 @@ use app\models\SoldeModel;
 use app\models\AchatVenteModel;
 use app\models\AdminAnimalModel;
 use app\models\AdminEspeceModel;
+use app\models\AnimalsModel;
 
 /** 
  * @var array $config This comes from the returned array at the bottom of the config.php file
@@ -46,4 +47,7 @@ Flight::map('AdminAnimalModel', function () {
 });
 Flight::map('AdminEspeceModel', function () {
     return new AdminEspeceModel(Flight::db());
+});
+Flight::map('AnimalsModel', function () {
+    return new AnimalsModel(Flight::db());
 });
