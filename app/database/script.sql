@@ -60,7 +60,9 @@ create table detailsAlimentation_elevage(
     id int auto_increment primary key,
     idEspece int,
     idAlimentation int,
-    gain int
+    gain int,
+    foreign key (idEspece) references espece_elevage(id),
+    foreign key (idAlimentation) references alimentation_elevage(id)
 );
 
 create table stockAlimentation_elevage(

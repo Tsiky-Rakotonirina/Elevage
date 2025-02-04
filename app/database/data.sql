@@ -1,6 +1,6 @@
 -- Données de test pour la table `eleveur_elevage`
 INSERT INTO eleveur_elevage (id, nom, MotDePasse) VALUES
-(9999,'Admin','Admin');
+(9999,'Admin','Admin'),
 (1, 'Pierre ', 'Pierre'),
 (2, 'Marie Curie', 'securepass'),
 (3, 'Paul Martin', 'mypassword');
@@ -40,10 +40,10 @@ INSERT INTO rubrique_elevage (id, nom, effet) VALUES
 (4, 'Vente Animal', 1);
 
 -- Données de test pour la table `mouvementSolde_elevage`
-INSERT INTO mouvementSolde_elevage (id, idEleveur, idRubrique, montant) VALUES
-(1, 1, 2, 100),
-(2, 2, 2, 200),
-(3, 3, 3, 150);
+INSERT INTO mouvementSolde_elevage (id, idEleveur, idRubrique, montant,date) VALUES
+(1, 1, 2, 100,now()),
+(2, 2, 2, 200,now()),
+(3, 3, 3, 150,now());
 
 -- Données de test pour la table `espece_elevage`
 INSERT INTO espece_elevage (id, nom, image, poidsMax, poidsMinVente, nbJourFaim, prixVenteKg, pertePoidsJour, quotaJournalier) VALUES
@@ -56,37 +56,35 @@ INSERT INTO espece_elevage (id, nom, image, poidsMax, poidsMinVente, nbJourFaim,
 (7, 'Mouton', '/public/assets/images/mouton.jpg', 70, 50, 6, 10, 3, 6),
 (8, 'Poule', '/public/assets/images/poule.jpg', 4, 2, 2, 8, 1, 2);
 
-
 -- Données de test pour la table `animal_elevage`
-INSERT INTO animal_elevage (id, idEleveur, idEspece, poidsInitial) VALUES
-(1, 1, 1, 600),
-(2, 2, 2, 4),
-(3, 3, 3, 250),
-(4, 1, 4, 55),
-(5, 2, 5, 6),
-(6, 3, 6, 9),
-(7, 1, 7, 65),
-(8, 2, 8, 3);
-
--- Données de test pour la table `animal_elevage` avec idEleveur=1
 INSERT INTO animal_elevage (id, idEleveur, idEspece, poidsInitial, autoVente, dateVente, dateMort) VALUES
-(1, 1, 1, 600, true, '2025-01-01', '2025-02-01'),
-(2, 1, 2, 4, false, '2025-01-15', '2025-02-15'),
-(3, 1, 3, 5, true, '2025-01-20', '2025-02-20'),
+(1, 1, 1, 600, true, null, '2025-02-01'),
+(2, 2, 2, 4, false, '2025-01-15', '2025-02-15'),
+(3, 3, 3, 250, true, null, '2025-02-20'),
 (4, 1, 4, 55, false, '2025-01-25', '2025-02-25'),
-(5, 1, 5, 6, true, '2025-01-30', '2025-02-28');
+(5, 2, 5, 6, true, null, '2025-02-28'),
+(6, 3, 6, 9, false, '2025-02-05', '2025-03-05'),
+(7, 1, 7, 65, true,null, '2025-03-10'),
+(8, 9999, 7, 30, null, null, '2025-03-15'),
+(9, 9999, 8, 50, null, null, '2025-03-15'),
+(10, 9999, 6, 10, null, null, '2025-03-15'),
+(11, 9999, 5, 31, null, null, '2025-03-15');
+
+-- Données de test pour la table `transactionAnimal_elevage`
+INSERT INTO transactionAnimal_elevage (id, idAnimal, prix, date, vendu) VALUES
+(1, 8, 300, '2025-03-16', false),
+(2, 9, 500, '2025-03-17', false),
+(3, 10, 150, '2025-03-18', false),
+(4, 11, 200, '2025-03-19', false);
 
 -- Données de test pour la table `alimentation_elevage`
 INSERT INTO alimentation_elevage (id, nom, prix) VALUES
 (1, 'Foin',20),
 (2, 'Grains',50),
 (3, 'Maïs',10),
-(4,'Carotte',30);
-INSERT INTO alimentation_elevage (id, nom, prix) VALUES
+(4,'Carotte',30),
 (5, 'Herbe', 15),
 (6, 'Légumes', 35);
-
-
 
 -- Données de test pour la table `detailsAlimentation_elevage`
 INSERT INTO detailsAlimentation_elevage (id, idEspece, idAlimentation, gain) VALUES
