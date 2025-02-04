@@ -2,7 +2,34 @@ index : connexion Admin et connexion Client
     -envoi depuis template-back et template-front
 
     -BackOffice : 
-        -menu : caroussel de images d animaux
-            -bases 
+        -menu.php : caroussel de images d animaux
+            -table images
+        -espece.php
+            -liste des especes
+            -changer des valeurs de l espece par ligne
+        -animal
+            -liste des animaux a vendre
+            -ajouter des animaux a vendre
+        
+    -FrontOffice  :
+        -solde.php
+            -possibilite de faire un depot
+            -achat de alimentation aux choix
+            -liste des 10 dernieres transaction
+        -achat.php
+            -liste des animaux dispos depuis Admin
+            -possibilite d achat
+                -insere les valeurs auto vente
+                -verification de solde
+        -tableau-de-bord.php
+            -possibilite de reinitisaliser a la date 0 : 03-02-2025
+            -choix de date action vers : 
+                -ferme.php
+                    -montre la situation de la ferme :
+                        -liste animaux avec 
+                            -vendu ou non
+                            -poids
+                            -vivant ou non
+                            -et caracteristiques de bases
 
 
