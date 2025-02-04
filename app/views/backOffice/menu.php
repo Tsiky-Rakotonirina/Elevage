@@ -1,54 +1,5 @@
-<style>
-#menuCaroussel {
-    width: 100%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-}
-
-.carousel-item {
-    display: none; /* Add this line */
-}
-
-.carousel-item.active {
-    display: block; /* Add this line */
-}
-
-.carousel-item img {
-    max-height: 700px; /* Increase this line */
-    object-fit: cover;
-    width: 50%; /* Increase this line */
-    height: auto;
-    margin: auto;
-}
-
-.carousel-caption {
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 20px; /* Increase this line */
-    border-radius: 5px;
-    color: white;
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 50%;
-    padding: 20px; /* Increase this line */
-    color: white;
-}
-
-.carousel-control-prev,
-.carousel-control-next {
-    color: white; /* Add this line */
-    font-size: 1.5em; /* Add this line */
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6); /* Add this line */
-}
-
-.carousel-control-prev-icon::before,
-.carousel-control-next-icon::before {
-    content: ''; /* Remove this line */
-}
-</style>
+<link rel="stylesheet" href="<?= $url ?>/public/assets/css/menu.css">
+<link rel="stylesheet" href="<?= $url ?>/public/assets/bootstrap5/css/bootstrap.min.css">
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -74,18 +25,18 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<div id="menuCaroussel" class="carousel slide" data-ride="carousel">
-    <a class="carousel-control-prev" href="#menuCaroussel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true">&lt;</span> <!-- Change this line -->
-    </a>
+<div id="menuCaroussel" class="carousel">
+    <button class="carousel-control-prev" aria-label="Précédent">
+        &#10094;
+    </button>
     <div class="carousel-inner">
-        <?php foreach ($caroussel as $index => $image): ?> <!-- Add $index variable -->
-            <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>"> <!-- Use $index variable -->
-                <img src="<?php echo $url.$image['image']; ?>" class="d-block" alt="">
+        <?php foreach ($caroussel as $index => $image): ?>
+            <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
+                <img src="<?php echo $url . $image['image']; ?>" alt="Image <?php echo $index + 1; ?>">
             </div>
         <?php endforeach; ?>
     </div>
-    <a class="carousel-control-next" href="#menuCaroussel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true">&gt;</span> <!-- Change this line -->
-    </a>
+    <button class="carousel-control-next" aria-label="Suivant">
+        &#10095;
+    </button>
 </div>

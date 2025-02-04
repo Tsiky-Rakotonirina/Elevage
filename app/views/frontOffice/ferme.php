@@ -62,7 +62,7 @@
                                 <button type="submit">Vendre</button>
                             </form>
                         <?php } else { ?>
-                            <h3>Vente non disponible</h3>
+                            <h3 style="margin-right:52px">Vente non disponible</h3>
                         <?php } ?>
                     </div>
                 </div>
