@@ -43,7 +43,14 @@
     border: none;
     font-size: 15px;
 }
-.filtre input:focus{
+input[type="date"]{
+    width: 50%;
+}
+input[type="radio"]{
+    margin-top: 2vh;
+    width: 10%;
+}
+.filtre input[type="date"]:focus{
     border-color: #FF5A5F;
     outline: 0;
     box-shadow: 2px 2px 2px 1px #FF5A5F;

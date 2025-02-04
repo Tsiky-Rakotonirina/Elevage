@@ -12,8 +12,9 @@
                 <label for="">Date mort maximum : </label>
                 <input type="date" name="dateMortMax" min="2025-03-02">
                <br><br>
-                <label for="">Auto vente : </label>
-                Oui <input type="radio" name="autoVente" value="true">  Non <input type="radio" name="autoVente" value="false">
+                <label for="">Auto vente : </label><br>
+                <span style="font-size:22px; font-weight: 500;">Oui</span> <input type="radio" name="autoVente" value="true"> 
+                 <span style="font-size:22px; font-weight: 500;">Non</span> <input type="radio" name="autoVente" value="false">
                <br><br>
                 <label for="">Espece : </label>
                 <select name="espece" id="">
@@ -52,7 +53,7 @@
                     </div>
                     <div class="bt">
                         <?php if($animal["prixDeVente"]>0) { ?>
-                            <h3><span>Prix de vente :</span>Est vendu au prix de <?php echo $animal["prixDeVente"] ?> ariary</h3>
+                            <h3><span>Prix de vente : </span><?php echo $animal["prixDeVente"] ?> ariary</h3>
                         <?php } else { ?>
                             <h3 style="margin-right:52px">Vente non disponible</h3>
                         <?php } ?>
