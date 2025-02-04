@@ -1,0 +1,122 @@
+.contains{
+    margin-top: 3vh;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    height: auto;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+}
+.solde{
+    background-color: #6A7F8F;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+    height: 6vh;
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.formulaires{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.depot, .achat{
+    margin-top: 5vh;
+    border: 1px solid lightgray;
+    width: 40%;
+    height: 55vh;
+    border-radius: 40px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2), 0px 1px 3px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+.achat{
+    background-color: rgb(233, 227, 215);
+}
+.depot{
+    background-color: rgba(211, 211, 211, 0.514);
+}
+img{
+    max-width: 120px;
+}
+.title{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.title h3{
+    font-size: 25px;
+    font-weight: 500;
+}
+.title h3{
+    margin-top: -0px;
+}
+.container-input{
+    margin-left: -3vw;
+    width: 150%;
+    margin-top: 30px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+label{
+    font-weight: 500;
+    font-size: 20px;
+    color: black;
+}
+input{
+    margin-top: 8px;
+    width: 100%;
+    height: 4.5vh;
+    border-radius: 7px;
+    padding: 10px;
+    border: none;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+select{
+    width: 100%;
+    height: 4.5vh;
+    border-radius: 7px;
+    padding: 10px;
+    border: none;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+input:focus{
+    border-color: #FF5A5F;
+    outline: 0;
+    box-shadow: 2px 2px 2px 1px #FF5A5F;
+}
+.formulaires button{
+    width: 100%;
+    margin-top: 20%;
+    padding: 10px;
+    border: 1px solid #FF5A5F;
+    font-size: 20px;
+    border-radius: 10px;
+    font-weight: 500;
+    color: white;
+    background-color: #FF5A5F;
+}
+.formulaires button:hover{
+    background-color: #ff4248;
+}
+.tableau{
+    text-align: center;
+}

@@ -1,44 +1,59 @@
-<h3>Solde actuel : <?php echo $solde; ?></h3>
+<link rel="stylesheet" href="<?=$url ?>/public/assets/css/solde.css">
+<link rel="stylesheet" href="<?=$url ?>/public/assets/bootstrap5/css/bootstrap.min.css">
 
-<h3>Faire un depot pour augmenter votre solde</h3>
-<form action="depot" method="post">
-    <label for="">Montant : </label>
-    <input type="number" min="0" name="montant" required> ar
-    <input type="submit" value="Deposer ">
-</form>
-
-<h3>Achter des aliments : </h3>
-<form action="achatAlimentation" method="post">
-    <label for="">Nombre de portions : </label>
-    <input type="number" min="0" name="nbPortion" required>
-    <label for="">Alimentation</label>
-    <select name="idAlimentation" id="">
-        <?php foreach($alimentations as $alimentation) { ?>
-            <option value="<?php echo $alimentation["id"]; ?>"><?php echo $alimentation["nom"]; ?></option>
-        <?php } ?>
-    </select>
-    <input type="submit" value="Acheter">
-</form>
-<?php if(isset($succes)) {
-    echo $succes;
-} ?>
-
-<?php if(isset($erreur)) {
-    echo $erreur;
-} ?>
-
-<h3>Vos dix derniers mouvements : </h3>
-<table border="1">
-    <tr>
-        <th>Date</th>
-        <th>Rubrique</th>
-        <th>Montant</th>
-    </tr>
-    <?php foreach($mouvements as $mouvement) { ?>
-    <tr>
-        <td><?php echo $mouvement["date"]; ?></td>
-        <td><?php echo $mouvement["nom"]; ?></td>
-        <td><?php echo $mouvement["montant"]*$mouvement["effet"] ; ?></td>
-    </tr>
-    <?php } ?>
-</table>
+<div class="contains">
+    <div class="solde">
+        <?php echo $solde; ?> Ariary
+    </div>
+    <div class="formulaires">
+        <div class="depot">
+            <form action="depot" method="post">
+                <div class="title">
+                    <img src="<?php echo $url?>/public/assets/css/image/monney.png" alt="">
+                    <h3 style="color:green">Depot</h3>
+                </div>
+                <div class="container-input">
+                    <label for="">Montant : </label>
+                    <input type="number" min="0" name="montant" required> 
+                </div>
+                <button type="submit" >Deposer</button>
+            </form>
+        </div>
+        <div class="achat">
+            <form action="achatAlimentation" method="post">
+                <div class="title">
+                    <img src="<?php echo $url?>/public/assets/css/image/achat.png" alt="">
+                    <h3 style="color:brown">Achat d'aliment</h3>
+                </div>
+                <div class="container-input">
+                    <label for="">Nombre de portions : </label>
+                    <input type="number" min="0" name="nbPortion" required>
+                    <label for="">Alimentation : </label>
+                    <select name="idAlimentation" id="">
+                        <?php foreach($alimentations as $alimentation) { ?>
+                            <option value="<?php echo $alimentation["id"]; ?>"><?php echo $alimentation["nom"]; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <button type="submit" >Acheter</button>
+            </form>
+        </div>
+    </div>
+    <h3 style="text-align: center; font-weight:500;margin-top:5vh; margin-bottom:5vh">Vos dix derniers mouvements : </h3>
+    <div class="tableau">
+        <table class="table table-light table-hover">
+            <tr>
+                <th><i class="fa-classic fa-solid fa-calendar-days fa-fw"></i> Date</th>
+                <th><i class="fa-classic fa-solid fa-paperclip fa-fw"></i> Rubrique</th>
+                <th><i class="fa-classic fa-solid fa-money-bill fa-fw"></i> Montant</th>
+            </tr>     
+            <?php foreach($mouvements as $mouvement) { ?>
+                <tr>
+                    <td><?php echo $mouvement["date"]; ?></td>
+                    <td><?php echo $mouvement["nom"]; ?></td>
+                    <td><?php echo $mouvement["montant"]*$mouvement["effet"] ; ?></td>
+                </tr>
+            <?php } ?> 
+        </table>
+    </div>
+</div><br><br><br>
