@@ -1,6 +1,8 @@
-index : formulaire de connexion
-    -tableau de bord(calendrier)
-        -fermeEleveur
-    -forum
-    -depot
-    -alimenter
+index : connexion Admin et connexion Client
+    -envoi depuis template-back et template-front
+
+    -BackOffice : 
+        -menu : caroussel de images d animaux
+            -bases 
+
+
