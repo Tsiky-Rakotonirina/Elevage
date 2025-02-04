@@ -39,8 +39,8 @@ $url = Flight::get('flight.base_url');
                     <a href="solde">
                         Solde
                     </a>
-                    <a href="nourirView">
-                        Nourir les animaux
+                    <a href="deconnection">
+                        Deconnection
                     </a>
                 </div>
             </div>

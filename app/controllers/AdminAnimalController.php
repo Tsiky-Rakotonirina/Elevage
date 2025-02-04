@@ -20,7 +20,7 @@ class AdminAnimalController {
         Flight::render('template-back', $data);
     }
 
-    public function ajoutAnimal() {
+    public function ajoutAnimal($idEspece,$poids) {
         Flight::AdminAnimalModel()->ajoutAnimal($idEspece,$poids);
         $this->listeAnimal();
     }

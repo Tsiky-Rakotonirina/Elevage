@@ -51,6 +51,10 @@ class Controller {
         }
     }
 
-    
+    public function deconnectionEleveur() {
+        session_destroy();
+        $data = ['page'=>'','url'=>$this->url];
+        Flight::render('index',$data);
+    }
 
 }
