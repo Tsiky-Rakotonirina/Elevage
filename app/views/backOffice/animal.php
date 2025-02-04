@@ -13,7 +13,7 @@
 
 <h2>Liste Animaux</h2>
 <?php foreach($animaux as $animal) { ?>
-    <p>Id : <?php echo $animal["id"] ?></p>
+    <p>Id : <?php echo $animal["animal_id"] ?></p>
     <p>Espece : <?php echo $animal["espece_nom"] ?></p>
     <p>Poids : <?php echo $animal["poids"] ?></p>
     <p>Prix : <?php echo $animal["prixVenteKg"]*$animal["poids"] ?> ar </p>

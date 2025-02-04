@@ -13,7 +13,7 @@ class AdminAnimalModel
     }
 
     public function listeAnimal() {
-        $query = "SELECT id FROM V_AnimalEspece ";
+        $query = "SELECT * FROM V_AnimalEspece ";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll();

@@ -35,7 +35,7 @@ class Controller {
         Flight::render('template-front',$data);
     }
 
-    public function menu() {
+    public function menuAdmin() {
         $caroussel=Flight::Model()->caroussel();
         $data = ['page'=>'menu','url'=>$this->url,'caroussel'=>$caroussel];
         Flight::render('template-back',$data);

@@ -37,7 +37,7 @@ $router->get('/listeEspece',[$AdminEspeceController,'listeEspece']);
 $router->post('/modifierEspece',[$AdminEspeceController,'modifierEspece']);
 
 $AdminAnimalController=new AdminAnimalController($url);
-$router->get('/listeAnimal',[$AdminEspeceController,'listeAnimal']);
-$router->post('/ajoutAnimal',[$AdminEspeceController,'ajoutAnimal']);
+$router->get('/listeAnimal',[$AdminAnimalController,'listeAnimal']);
+$router->post('/ajoutAnimal',[$AdminAnimalController,'ajoutAnimal']);
 
 
