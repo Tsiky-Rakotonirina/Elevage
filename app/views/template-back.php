@@ -20,9 +20,20 @@
 </head>
 <body>
     <header>
-        <p><a href="listeEspece">Especes</a></p>
-        <p><a href="menuAdmin">Menu</a></p>
-        <p><a href="listeAnimal">Animaux</a></p>
+        <nav class="menu">
+            <div class="logo">
+                <img src="<?php echo $url?>/public/assets/css/image/logo2.png" alt="">
+            </div>
+            <div class="container-button">
+                <a href="listeEspece">Especes</a>
+                <a href="menuAdmin">Menu</a>
+                <a href="listeAnimal">Animaux</a>
+            </div>
+            <div class="message">
+                <h3 style="margin-right:30px">Admin <span style="color:#FF5A5F; font-weight:bold;" >Section</span></h3>
+            </div>
+        </nav>
+       
     </header>
     <main>
         <?php include("backOffice/".$page.".php") ?>    

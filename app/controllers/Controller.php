@@ -44,13 +44,17 @@ class Controller {
     public function connexionAdmin() {
 		$id=Flight::Model()->connexionAdmin($_POST['nom'],$_POST['motDePasse']);
         if($id!=0) {
-            $this->menu();
+            $this->menuAdmin();
         } else {
             $data = ['page'=>'','url'=>$this->url];
             Flight::render('index',$data);
         }
     }
 
-    
+    public function deconnectionEleveur() {
+        session_destroy();
+        $data = ['page'=>'','url'=>$this->url];
+        Flight::render('index',$data);
+    }
 
 }
