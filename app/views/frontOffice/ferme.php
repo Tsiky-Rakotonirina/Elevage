@@ -7,19 +7,14 @@
         </div>
         <div class="container-input">
             <form action="fermeFiltre" method="get">
-                <label for="">Poids : </label>
-                <input type="number" name="poidsMin" placeholder="Poids min" min="0"><br><br>
-                <label for="">Prix : </label>
-                <div class="prix">
-                    <input type="number" name="prixMin" placeholder="Prix min" min="0">
-                    <input type="number" name="prixMax" placeholder="Prix max" min="0"></p>
-                </div><br>
-                <label for="">Etat : </label>
-                <select name="etat" class="custom-select" id="">
-                    <option value="">Tous</option>
-                    <option value="true">Vivant</option>
-                    <option value="false">Mort</option>
-                </select><br><br>
+                <label for="">Date mort minimum : </label>
+                <input type="date" name="dateMortMin" min="2025-03-02">
+                <label for="">Date mort maximum : </label>
+                <input type="date" name="dateMortMax" min="2025-03-02">
+               <br><br>
+                <label for="">Auto vente : </label>
+                Oui <input type="radio" name="autoVente" value="true">  Non <input type="radio" name="autoVente" value="false">
+               <br><br>
                 <label for="">Espece : </label>
                 <select name="espece" id="">
                     <option value="">Tous les especes</option>
@@ -40,8 +35,10 @@
                 </div>
                 <div class="infos">
                     <h3><span>Id :</span> <?php echo $animal["animal_id"] ?></h3>
-                    <h3><span></span>Poids :</span> <?php echo $animal["poids"] ?> kg</h3>
-                    <h3><span>Prix de vente :</span> <?php echo $animal["prixDeVente"] ?> ariary</h3>
+                    <h3><span></span>Poids :</span> <?php echo $animal["poidsInitial"] ?> kg</h3>
+                    <h3><span>Auto vente ? :</span> <?php if($animal["autoVente"]){ echo "Oui"; } else  echo "Non" ?></h3>
+                    <h3><span>Date vente :</span> <?php if($animal["dateVente"]!=null){ echo $animal["dateVente"]; } else  echo "Est en autoVente" ?></h3>
+                    <h3><span>Date de mort :</span> <?php echo $animal["dateMort"] ?></h3>
                     <br>
                     <h3 id="lien-espece"><i class="fa-classic fa-solid fa-circle-info fa-fw"></i> Info sur l'espece</h3>
                 </div>
@@ -55,12 +52,7 @@
                     </div>
                     <div class="bt">
                         <?php if($animal["prixDeVente"]>0) { ?>
-                            <form action="venteAnimal" method="get">
-                                <input type="hidden" name="idAnimal" value=<?php echo $animal["animal_id"] ?>>
-                                <input type="hidden" name="prixDeVente" value=<?php echo $animal["prixDeVente"] ?>>
-                                <input type="hidden" name="date" value=<?php echo $date ?> >
-                                <button type="submit">Vendre</button>
-                            </form>
+                            <h3><span>Prix de vente :</span>Est vendu au prix de <?php echo $animal["prixDeVente"] ?> ariary</h3>
                         <?php } else { ?>
                             <h3>Vente non disponible</h3>
                         <?php } ?>
@@ -75,6 +67,7 @@
                     <h4>Poids Minimal de Vente : <?php echo $animal["poidsMinVente"] ?> </h4>
                     <h4>Nombre de jour de faim pour mourir : <?php echo $animal["nbJourFaim"] ?> jours</h4>
                     <h4>Prix Vente en Kg : <?php echo $animal["prixVenteKg"] ?> ariary</h4>
+                    <h4>Quota journalier : <?php echo $animal["quotaJournalier"] ?> portions</h4>
                     <h4>Perte de Poids par Jour : <?php echo $animal["pertePoidsJour"] ?>%</h4>
                 </div>
             </div>

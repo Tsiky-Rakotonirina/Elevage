@@ -13,115 +13,198 @@ class TableauDeBordModel
         $this->db = $db;
     }
 
-    public function estVendable($idAnimal) // Correction ici
-    {
-        $sql = "SELECT poids,poidsMinVente FROM V_AnimalEspece WHERE = ?";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([$idAnimal]);
-        $row = $stmt->fetch();
-        if ($row['poids'] >= $row['poidsMinVente']) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function prixVente($idAnimal)
-    {
-        $sql = "SELECT * FROM V_AnimalEspece WHERE animal_id = ?";
-        $stmt = $this->db->prepare($sql);
-        $stmt->execute([$idAnimal]);
-        $row = $stmt->fetch();
-        $bool = $this->estVendable($idAnimal);
-        if ($bool == true) {
-            return $row["poids"] * $row["prixVenteKg"];
-        } else {
-            return 0;
-        }
-    }
-
-
-    public function tableauDeBord($IdEleveur)
-    {
-        $sql = "SELECT * FROM V_AnimalEspece WHERE idEleveur = ? ";
+    private function listeStock($IdEleveur) {
+        $sql = "SELECT * FROM stockAlimentation_elevage WHERE idEleveur = ? ";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([$IdEleveur]);
-        $data = $stmt->fetchAll();
-        for ($i = 0; $i < count($data); $i++) {
-            $data[$i]["prixDeVente"] = $this->prixVente($data[$i]["id"]);
-        }
-        return $data;
+        return $stmt->fetchAll();
     }
-    public function fermeFiltre($idEleveur, $date, $poidsMin, $poidsMax, $prixMin, $prixMax, $etat, $espece)
+
+    private function listeDetailsAlimentation($IdEleveur) {
+        $sql = "SELECT d.idAlimentation,s.nbPortion,d.gain,d.idEspece FROM detailsAlimentation_elevage d JOIN stockAlimentation_elevage s ON d.idAlimentation=s.idAlimentation WHERE s.idEleveur=? ORDER BY idAlimentation ASC";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$IdEleveur]);
+        return $stmt->fetchAll();
+    }
+
+    private function nbPortionJourTotale($data) {
+        $total = 0;
+        foreach ($data as $item) {
+            if (isset($item['quotaJournalier'])) {
+                $total += $item['quotaJournalier'];
+            }
+        }
+        return $total;
+    }
+
+    private function updateStock($stocks,$nbPortionJourTotale)
     {
-        $query = "SELECT 
-        vae.animal_id,
-        vae.image,
-        vae.poids,
-        vae.espece_id,
-        vae.espece_nom,
-        vae.poidsMax,
-        vae.poidsMinVente,
-        vae.nbJourFaim,
-        vae.prixVenteKg,
-        vae.pertePoidsJour,
-        CASE 
-            WHEN DATEDIFF(?, al.date) > vae.nbJourFaim THEN 'false'
-            ELSE 'true'
-        END as etat,
-        CASE 
-            WHEN vae.poids >= vae.poidsMinVente AND (DATEDIFF(?, al.date) <= vae.nbJourFaim) THEN vae.poids * vae.prixVenteKg
-            ELSE 0
-        END as prixDeVente
-    FROM 
-        V_AnimalEspece vae
-    JOIN 
-        (SELECT MAX(date) as date, idAnimal 
-         FROM alimenter_elevage 
-         WHERE idAnimal IN (SELECT animal_id FROM V_AnimalEspece WHERE idEleveur = ?) 
-         GROUP BY idAnimal) al 
-    ON vae.animal_id = al.idAnimal
-    WHERE vae.idEleveur = ?
-    ";
-        $data = [$date, $date, $idEleveur, $idEleveur];
-        if ($poidsMin !== null) {
-            $query .= " AND vae.poids >= ?";
-            $data[] = $poidsMin;
+        $totalPortions = 0;
+        foreach ($stocks as $stock) {
+            $totalPortions += $stock['nbPortion'];
         }
-        if ($poidsMax !== null) {
-            $query .= " AND vae.poids <= ?";
-            $data[] = $poidsMax;
+        if ($totalPortions >= $nbPortionJourTotale) {
+            return -1;
+        } else {
+            return $totalPortions;
         }
-        if ($prixMin !== null) {
-            $query .= " AND (CASE 
-            WHEN vae.poids >= vae.poidsMinVente AND (DATEDIFF(?, al.date) <= vae.nbJourFaim) THEN vae.poids * vae.prixVenteKg
-            ELSE 0
-            END) >= ?";
-            $data[] = $date;
-            $data[] = $prixMin;
+    }
+
+    private function nombreJour($date)
+    {
+        $targetDate = new \DateTime('2025-02-03');
+        $currentDate = new \DateTime($date);
+        $interval = $currentDate->diff($targetDate);
+        return $interval->days;
+    }
+
+    private function gain($details, $idEspece, $quotaJournalier)
+    {
+        foreach ($details as &$detail) {
+            if ($detail['idEspece'] == $idEspece && $detail['nbPortion'] > 0) {
+                $idAlimenation=$detail['idAlimentation'];
+                foreach($details as &$detail1) {
+                    $detail1['nbPortion']=$detail1['nbPortion']-$quotaJournalier;
+                }
+                return $detail['gain'];
+            }
         }
-        if ($prixMax !== null) {
-            $query .= " AND (CASE 
-            WHEN vae.poids >= vae.poidsMinVente AND (DATEDIFF(?, al.date) <= vae.nbJourFaim) THEN vae.poids * vae.prixVenteKg
-            ELSE 0
-            END) <= ?";
-            $data[] = $date;
-            $data[] = $prixMax;
+        return $gainTotal;
+    }
+
+    public function fermeFiltre($idEleveur, $date, $dateMortMin, $dateMortMax, $autoVente, $idEspece) {
+        $query = "SELECT *
+                FROM 
+                    V_AnimalEspece
+                WHERE idEleveur = ? AND 1=1 
+                ";
+        $data = [$idEleveur];
+        if ($idEspece !== null) {
+            $query .= " AND espece_id = ?";
+            $data[] = $idEspece;
         }
-        if ($etat !== null) {
-            $query .= " AND (CASE 
-            WHEN DATEDIFF(?, al.date) > vae.nbJourFaim THEN 'false'
-            ELSE 'true'
-            END) = ?";
-            $data[] = $date;
-            $data[] = $etat;
+        if ($autoVente !== null) {
+            $query .= " AND autoVente = ?";
+            $data[] = $autoVente;
         }
-        if ($espece !== null) {
-            $query .= " AND vae.espece_id = ?";
-            $data[] = $espece;
+        if ($dateMortMin !== null) {
+            $query .= " AND dateMort>= ?";
+            $data[] = $dateMortMin;
+        }
+        if ($dateMortMax !== null) {
+            $query .= " AND dateMort<= ?";
+            $data[] = $dateMortMax;
         }
         $stmt = $this->db->prepare($query);
         $stmt->execute($data);
-        return $stmt->fetchAll();
+        $result = $stmt->fetchAll();
+        for($j=0;$j<count($result);$j++) {
+            if($result[$j]["dateMort"]==$date) {
+                $result[$j]["etat"]=false;
+            } else {
+                $result[$j]["etat"]=true;
+            }
+            if(($result[$j]["autoVente"] && $result[$j]["poidsInitial"]>=$result[$j]["poidsMinVente"]) || (!$result[$j]["autoVente"] && $result[$j]["dateVente"]<=$date)) {
+                $result[$j]["prixDeVente"]=$result[$j]["poidsInitial"]*$result[$j]["prixVenteKg"];
+            } else {
+                $result[$j]["prixDeVente"]=0;
+            }
+        }
+        $stocks = $this->listeStock($idEleveur);
+        $details = $this->listeDetailsAlimentation($idEleveur);
+        $nombreJour = $this->nombreJour($date);
+        $nbPortionJourTotale = $this->nbPortionJourTotale($data);
+        for ($i = 0; $i < $nombreJour; $i++) {
+            $stock = $this->updateStock($stocks, $nbPortionJourTotale);
+            if ($stock == -1) {
+                $nbPortionJourTotaleProvisoire = $nbPortionJourTotale;
+                foreach ($stocks as &$stockItem) {
+                    if ($stockItem['nbPortion'] >= $nbPortionJourTotaleProvisoire) {
+                        $stockItem['nbPortion'] -= $nbPortionJourTotaleProvisoire;
+                        $nbPortionJourTotaleProvisoire = 0;
+                        break;
+                    } else {
+                        $nbPortionJourTotaleProvisoire -= $stockItem['nbPortion'];
+                        $stockItem['nbPortion'] = 0;
+                        if($nbPortionJourTotaleProvisoire==0) {
+                            break;
+                        }
+                    }
+                }
+                for($j=0;$j<count($result);$j++) {
+                    $gain=$this->gain($details,$result[$j]["espece_id"],$result[$j]["quotaJournalier"]);
+                    if($result[$j]["poidsInitial"]<$result[$j]["poidsMax"]) {
+                        $nouveauPoids=$result[$j]["poidsInitial"]+($result[$j]["poidsInitial"]*$gain/100);
+                        if($nouveauPoids<$result[$j]["poidsMax"]) {
+                            $result[$j]["poidsInitial"]=$nouveauPoids;
+                        } else {
+                            $result[$j]["poidsInitial"]=$result[$j]["poidsMax"];
+                        }
+                    }
+                    if($result[$j]["dateMort"]==$date) {
+                        $result[$j]["etat"]=false;
+                    } else {
+                        $result[$j]["etat"]=true;
+                    }
+                    if(($result[$j]["autoVente"] && $result[$j]["poidsInitial"]>=$result[$j]["poidsMinVente"]) || (!$result[$j]["autoVente"] && $result[$j]["dateVente"]<=$date)) {
+                        $result[$j]["prixDeVente"]=$result[$j]["poidsInitial"]*$result[$j]["prixVenteKg"];
+                    } else {
+                        $result[$j]["prixDeVente"]=0;
+                    }
+                }
+            } else {
+                $gain=0;
+                for($j=0;$j<count($result);$j++) {
+                    foreach ($details as &$detail) {
+                        if ($detail['idEspece'] == $idEspece && $detail['nbPortion'] > 0) {
+                            $idAlimenation=$detail['idAlimentation'];
+                            foreach($details as &$detail1) {
+                                $detail1['nbPortion']=$detail1['nbPortion']-$result[$j]["quotaJournalier"];
+                            }
+                            $gain=$detail['gain'];
+                        }
+                    }
+                    if($gain==0) {
+                        if($result[$j]["faim"]!=null || $result[$j]["faim"]!=0 || $result[$j]["faim"]!="") {
+                            $result[$j]["faim"]++;
+                        } else {
+                            $result[$j]["faim"]=0;
+                        }
+                        $result[$j]["poidsInitial"]=$result[$j]["poidsInitial"]-($result[$j]["poidsInitial"]*$pertePoidsJour/100);
+                        if($result[$j]["dateMort"]==$date || $result[$j]["faim"]>=$result[$j]["nbJourFaim"]) {
+                            $result[$j]["etat"]=false;
+                        } else {
+                            $result[$j]["etat"]=true;
+                        }
+                        if(($result[$j]["autoVente"] && $result[$j]["poidsInitial"]>=$result[$j]["poidsMinVente"]) || (!$result[$j]["autoVente"] && $result[$j]["dateVente"]<=$date)) {
+                            $result[$j]["prixDeVente"]=$result[$j]["poidsInitial"]*$result[$j]["prixVenteKg"];
+                        } else {
+                            $result[$j]["prixDeVente"]=0;
+                        }
+                        continue;
+                    }
+                    if($result[$j]["poidsInitial"]<$result[$j]["poidsMax"]) {
+                        $nouveauPoids=$result[$j]["poidsInitial"]+($result[$j]["poidsInitial"]*$gain/100);
+                        if($nouveauPoids<$result[$j]["poidsMax"]) {
+                            $result[$j]["poidsInitial"]=$nouveauPoids;
+                        } else {
+                            $result[$j]["poidsInitial"]=$result[$j]["poidsMax"];
+                        }
+                    }
+                    if($result[$j]["dateMort"]==$date) {
+                        $result[$j]["etat"]=false;
+                    } else {
+                        $result[$j]["etat"]=true;
+                    }
+                    if(($result[$j]["autoVente"] && $result[$j]["poidsInitial"]>=$result[$j]["poidsMinVente"]) || (!$result[$j]["autoVente"] && $result[$j]["dateVente"]<=$date)) {
+                        $result[$j]["prixDeVente"]=$result[$j]["poidsInitial"]*$result[$j]["prixVenteKg"];
+                    } else {
+                        $result[$j]["prixDeVente"]=0;
+                    }
+                }
+            }
+        }
+        return $result;
     }
 
     public function listeEspeces()

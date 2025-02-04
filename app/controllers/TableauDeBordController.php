@@ -25,41 +25,30 @@ class TableauDeBordController
 
     public function fermeFiltre()
     {
-        if (!isset($_GET['poidsMin']) || $_GET['poidsMin'] == "") {
-            $_GET['poidsMin'] = null;
+        if (!isset($_GET['dateMortMin']) || $_GET['dateMortMin'] == "") {
+            $_GET['dateMortMin'] = null;
         }
-        if (!isset($_GET['poidsMax']) || $_GET['poidsMax'] == "") {
-            $_GET['poidsMax'] = null;
+        if (!isset($_GET['dateMortMax']) || $_GET['dateMortMax'] == "") {
+            $_GET['dateMortMax'] = null;
         }
-        if (!isset($_GET['prixMin']) || $_GET['prixMin'] == "") {
-            $_GET['prixMin'] = null;
+        if (!isset($_GET['autoVente']) || $_GET['autoVente'] == "") {
+            $_GET['autoVente'] = null;
         }
-        if (!isset($_GET['prixMax']) || $_GET['prixMax'] == "") {
-            $_GET['prixMax'] = null;
-        }
-        if (!isset($_GET['etat']) || $_GET['etat'] == "") {
-            $_GET['etat'] = null;
-        }
-        if (!isset($_GET['espece']) || $_GET['espece'] == "") {
-            $_GET['espece'] = null;
+        if (!isset($_GET['idEspece']) || $_GET['idEspece'] == "") {
+            $_GET['idEspece'] = null;
         }
         $animaux = Flight::TableauDeBordModel()->fermeFiltre(
             $_SESSION['id'],
             $_GET['date'],
-            $_GET['poidsMin'],
-            $_GET['poidsMax'],
-            $_GET['prixMin'],
-            $_GET['prixMax'],
-            $_GET['etat'],
-            $_GET['espece']
+            $_GET['dateMortMin'],
+            $_GET['dateMortMax'],
+            $_GET['autoVente'],
+            $_GET['idEspece']
         );
-        foreach ($animaux as &$animal) {
-            $animal['poids'] = Flight::AnimalsModel()->getPoidActuel($animal['animal_id'], $_GET['date']);
-        }
-
 
         $especes = Flight::TableauDeBordModel()->listeEspeces();
         $data = ['page' => 'ferme', 'url' => $this->url, 'date' => $_GET['date'], 'animaux' => $animaux, 'especes' => $especes];
         Flight::render('template-front', $data);
     }
+
 }
