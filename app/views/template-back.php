@@ -20,9 +20,9 @@
 </head>
 <body>
     <header>
-        <p><a href="especeAdmin">Especes</a></p>
+        <p><a href="listeEspece">Especes</a></p>
         <p><a href="menuAdmin">Menu</a></p>
-        <p><a href="animalAdmin">Animaux</a></p>
+        <p><a href="listeAnimal">Animaux</a></p>
     </header>
     <main>
         <?php include("backOffice/".$page.".php") ?>    
