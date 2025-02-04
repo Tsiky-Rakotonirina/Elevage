@@ -1,5 +1,6 @@
 -- Données de test pour la table `eleveur_elevage`
 INSERT INTO eleveur_elevage (id, nom, MotDePasse) VALUES
+(9999,'Admin','Admin');
 (1, 'Pierre ', 'Pierre'),
 (2, 'Marie Curie', 'securepass'),
 (3, 'Paul Martin', 'mypassword');
@@ -157,6 +158,3 @@ INSERT INTO stockAlimentation_elevage (id, idEleveur, idAlimentation, nbPortion)
 (1, 1, 1, 500),
 (2, 2, 2, 500),
 (3, 3, 3, 30);
-
-INSERT INTO transactionAnimal_elevage(idAnimal,prix,date,vendu) VALUES 
-(2,100,now(),false);

@@ -2,7 +2,7 @@
 <script src="<?=$url ?>/public/assets/js/calendar.js"></script>
 <div class="reinitialiser">
     <form action="reinitialiser" method="post">
-        <input name="date" value="2025-02-03" readonly>
+        <input name="dateReinitialiser" value="2025-02-03" readonly>
         <button type="submit">Reinitiliser</button>
     </form>
 </div>
@@ -44,9 +44,6 @@
     }
 ?>
   
-<form action="reinitialiser" method="post">
-    <input type="hidden" name="dateReinitialiser" value="2025-02-03">
-    <input type="submit" value="Reinitiliser">
-</form>
+
 
 </h1>

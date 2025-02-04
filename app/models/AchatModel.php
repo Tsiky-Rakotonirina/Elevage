@@ -27,7 +27,7 @@ class AchatModel
         return $result["id"];
     }
 
-    public function achatAnimal($idTransaction,$idEleveur, $idAnimal, $prixAchat, $solde) {
+    public function achatAnimal($idTransaction,$idEleveur, $idAnimal, $prixAchat, $solde,$dateVente,$autoVente) {
         if($solde>$prixAchat) {
             $idRubrique = $this->getRubrique('Achat Animal');
             $stmt = $this->db->prepare("INSERT INTO mouvementSolde_elevage (idEleveur, idRubrique, montant, date) VALUES (?, ?, ?, NOW())");
@@ -35,6 +35,12 @@ class AchatModel
 
             $stmt = $this->db->prepare("UPDATE animal_elevage SET idEleveur = ? WHERE id = ?");
             $stmt->execute([$idEleveur, $idAnimal]);
+            $stmt = $this->db->prepare("UPDATE animal_elevage SET autoVente = ? WHERE id = ?");
+            $stmt->execute([$autoVente, $idAnimal]);
+            if($dateVente!=null && $dateVente!="")
+            $stmt = $this->db->prepare("UPDATE animal_elevage SET dateVente = ? WHERE id = ?");
+            $stmt->execute([$dateVente, $idAnimal]);
+            
 
             $stmt = $this->db->prepare("UPDATE transactionAnimal_elevage SET vendu = true WHERE id = ?");
             $stmt->execute([$idTransaction]);

@@ -39,6 +39,9 @@ $url = Flight::get('flight.base_url');
                     <a href="solde">
                         Solde
                     </a>
+                    <a href="deconnection">
+                        Deconnexion
+                    </a>
                 </div>
             </div>
         </nav>

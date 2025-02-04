@@ -54,7 +54,7 @@
                         <?php if($animal["prixDeVente"]>0) { ?>
                             <h3><span>Prix de vente :</span>Est vendu au prix de <?php echo $animal["prixDeVente"] ?> ariary</h3>
                         <?php } else { ?>
-                            <h3>Vente non disponible</h3>
+                            <h3 style="margin-right:52px">Vente non disponible</h3>
                         <?php } ?>
                     </div>
                 </div>

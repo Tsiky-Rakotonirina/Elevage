@@ -36,8 +36,8 @@ class AdminAnimalModel
     }
 
     public function ajoutAnimal($idEspece,$poids,$dateMort) {
-        $stmt = $this->db->prepare("INSERT INTO animal_elevage(idEleveur,idEspece,poids,dateMort) VALUES (0,?,?,?)");
-        $stmt->execute([$idEspece,$poids,$dateMort]);
+        $stmt = $this->db->prepare("INSERT INTO animal_elevage(idEleveur,idEspece,poidsInitial,dateMort) VALUES (?,?,?,?)");
+        $stmt->execute([9999,$idEspece,$poids,$dateMort]);
         $stmt = $this->db->prepare("INSERT INTO transactionAnimal_elevage(idAnimal,prix,date,vendu) VALUES (?,?,now(),false)");
         $idAnimal=$this->getAnimalId();
         $prix=$this->getPrixVenteKg($idEspece);

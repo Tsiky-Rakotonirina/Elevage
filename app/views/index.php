@@ -23,33 +23,39 @@
         
     </header>
     <main>
-        
-        <div class="container-div">
-            <div class="logo">
-                <img src="<?=$url ?>/public/assets/css/image/logo2.png" alt="">
-            </div>
-            <h1>Connexion <span style="color:#FF5A5F; font-weight:bold;">Eleveur</span></h1>
-            <form action="connexionEleveur" method="post">
-                <label for="">Nom :</label>
-                <input type="text" placeholder="Entrez votre nom" name="nom" value="Pierre" required >
-                <label for="">Mot de passe :</label>
-                <input type="password" placeholder="Entrez votre mot de passe" name="motDePasse" value="Pierre" required >
-                <button type="submit">Se connecter</button>
-            </form>
-            <?php if(isset($error)) { ?>
-                <div class="error">
-                    <?php echo $error ?>
+    <div class="container-form">
+            <div class="container-div">
+                <div class="logo">
+                    <img src="<?=$url ?>/public/assets/css/image/logo2.png" alt="">
                 </div>
-            <?php } ?>
+                <h1>Connexion <span style="color:#FF5A5F; font-weight:bold;">Eleveur</span></h1>
+                <form action="connexionEleveur" method="post">
+                    <label for="">Nom :</label>
+                    <input type="text" placeholder="Entrez votre nom" name="nom" value="Pierre" required >
+                    <label for="">Mot de passe :</label>
+                    <input type="password" placeholder="Entrez votre mot de passe" name="motDePasse" value="Pierre" required >
+                    <button type="submit">Se connecter</button>
+                </form>
+                    <?php if(isset($error)) { ?>
+                        <div class="error">
+                            <?php echo $error ?>
+                        </div>
+                    <?php } ?>
+            </div>
+            <div class="container-admin">
+                <div class="logo">
+                    <img style="width:125px;margin-top:5vh" src="<?=$url ?>/public/assets/css/image/admin.png" alt="">
+                </div><br>
+                <h1>Connexion <span style="color:#FF5A5F; font-weight:bold;">Admin</span></h1>
+                <form action="connexionAdmin"  method="post">
+                    <label for="">Nom :</label>
+                    <input type="text" placeholder="Entrez votre nom" name="nom" value="Ezechiel" required >
+                    <label for="">Mot de passe :</label>
+                    <input type="password" placeholder="Entrez votre mot de passe" name="motDePasse" value="Ezechiel" required >
+                    <button type="submit">Je suis Admin</button>
+                </form>
+            </div>
         </div>
-            <h1>Connexion <span style="color:#FF5A5F; font-weight:bold;">Admin</span></h1>
-            <form action="connexionAdmin"  method="post">
-                <label for="">Nom :</label>
-                <input type="text" placeholder="Entrez votre nom" name="nom" value="Ezechiel" required >
-                <label for="">Mot de passe :</label>
-                <input type="password" placeholder="Entrez votre mot de passe" name="motDePasse" value="Ezechiel" required >
-                <button type="submit">Je suis Admin</button>
-            </form>
     </main>
     <footer>
         

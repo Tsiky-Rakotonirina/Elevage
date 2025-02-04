@@ -18,6 +18,8 @@ $router->post('/connexionEleveur', [ $Controller, 'connexionEleveur']);
 $router->post('/reinitialiser', [ $Controller, 'reinitialiser']); 
 $router->post('/connexionAdmin', [ $Controller, 'connexionAdmin']);  
 $router->get('/menuAdmin', [ $Controller, 'menuAdmin']);  
+$router->get('/deconnection', [ $Controller, 'deconnectionEleveur']);  
+
 
 $TableauDeBordController = new TableauDeBordController($url);
 $router->get('/tableauDeBord', [$TableauDeBordController, 'tableauDeBord']);
@@ -39,6 +41,7 @@ $router->post('/modifierEspece',[$AdminEspeceController,'modifierEspece']);
 $AdminAnimalController=new AdminAnimalController($url);
 $router->get('/listeAnimal',[$AdminAnimalController,'listeAnimal']);
 $router->post('/ajoutAnimal',[$AdminAnimalController,'ajoutAnimal']);
+
 
 
 
