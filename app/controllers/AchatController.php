@@ -25,7 +25,7 @@ class AchatController
 
     public function achatAnimal() {
 		$solde=Flight::SoldeModel()->solde($_SESSION['id']);
-        $achat=Flight::AchatModel()->achatAnimal($_GET["idTransaction"],$_SESSION['id'], $_GET['idAnimal'], $_GET['prixAchat'],$solde);
+        $achat=Flight::AchatModel()->achatAnimal($_GET["idTransaction"],$_SESSION['id'], $_GET['idAnimal'], $_GET['prixAchat'],$solde,$_GET['dateVente'],$_GET['autoVente']);
         if($achat==true) {
             $this->listeAnimalEnVente();
         } else {

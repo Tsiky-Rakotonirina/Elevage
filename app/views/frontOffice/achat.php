@@ -7,6 +7,13 @@
             <h3>Poids : <?= $animal['poidsInitial'] ?> kg</h3>
             <h3>Prix: <?= $animal['prix'] ?> Ariary</h3>
             <form action="achatAnimal" method="GET">
+                <label for="">AutoVente</label>
+                <select name="autoVente" id="">
+                    <option value="true">Oui</option>
+                    <option value="false">Non</option>
+                </select>
+                <label for="">Date Vente</label>
+                <input type="date" name="dateVente" required>
                 <input type="hidden" name="idAnimal" value="<?= $animal['idAnimal'] ?>">
                 <input type="hidden" name="prixAchat" value="<?= $animal['prix'] ?>">
                 <input type="hidden" name="idTransaction" value="<?= $animal['transaction_id'] ?>">
