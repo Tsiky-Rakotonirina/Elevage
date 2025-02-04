@@ -12,6 +12,9 @@ class AnimalsController
     public function __construct($url)
     {
         $this->url = $url;
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
     }
 
     public function index()
@@ -22,10 +25,10 @@ class AnimalsController
     public function nourirView()
     {
 
-        $Alimentations = Flight::AnimalsModel()->listAnimal();
-        $Animals = Flight::AnimalsModel()->listAnimal();
-        $data = ['page' => 'template-front', 'url' => $this->url, 'animals' => $Animals, 'alimentations' => $Alimentations];
-        Flight::render('animals/nourir', $data);
+        $Alimentations = Flight::AnimalsModel()->listAlimentation($_SESSION['id']);
+        $Animals = Flight::AnimalsModel()->listAnimal($_SESSION['id']);
+        $data = ['page' => 'alimenter', 'url' => $this->url, 'animals' => $Animals, 'alimentations' => $Alimentations];
+        Flight::render('template-front', $data);
     }
     public function nourrirAnimal()
     {
@@ -34,12 +37,17 @@ class AnimalsController
         $date = Flight::request()->data->date;
         $idAlimentation = Flight::request()->data->idAlimentation;
 
-        $result = Flight::AnimalsModel()->nourrirAnimal($IdAnimal, $nbPortion, $date, $idAlimentation);
-
+        $result = Flight::AnimalsModel()->nourrir($IdAnimal, $nbPortion, $date, $idAlimentation);
+        $Alimentations = Flight::AnimalsModel()->listAlimentation($_SESSION['id']);
+        $Animals = Flight::AnimalsModel()->listAnimal($_SESSION['id']);
         if ($result) {
-            Flight::render('template-front', ['Success' => 'L\'animal a bien été nouri comme il faut. ']);
+            $data = ['page' => 'alimenter', 'url' => $this->url, 'animals' => $Animals, 'alimentations' => $Alimentations];
+            // Flight::render('template-front', ['Success' => 'L\'animal a bien été nouri comme il faut. ', $data]);
+            Flight::json(['Success' => 'L\'animal a bien été nouri comme il faut. ', $data]);
         } else {
-            Flight::render('template-front', ['Error' => 'Vous n\'avez pas asser de ressources pour pouvoir nourir l\'animam .']);
+            $data = ['page' => 'alimenter', 'url' => $this->url, 'animals' => $Animals, 'alimentations' => $Alimentations];
+            // Flight::render('template-front', ['Error' => 'Vous n\'avez pas asser de ressources pour pouvoir nourir l\'animam .', $data]);
+            Flight::json(['Error' => 'Vous n\'avez pas asser de ressources pour pouvoir nourir l\'animam .', $data]);
         }
     }
 }

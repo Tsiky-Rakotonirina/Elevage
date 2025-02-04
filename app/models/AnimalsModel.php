@@ -71,22 +71,24 @@ class AnimalsModel
     }
     public function getPoidActuel($IdAnimal, $date)
     {
-        $sql = "select poids from animal_elevage where idAnimal =? ";
+        $sql = "select poids from animal_elevage where id=? ";
         $stmt = $this->db->prepare($sql);
         $stmt->execute([$IdAnimal]);
         $poid = $stmt->fetch()['poids'];
         $sql_alimenter_detail = "SELECT   ae.id AS alimenter_id, ae.idAnimal, ae.nbPortion, ae.date, ae.idDetailsAlimentation, da.id as detail_id , da.idEspece , da.idAlimentation , da.gain FROM alimenter_elevage ae JOIN detailsAlimentation_elevage da ON ae.idDetailsAlimentation = da.id WHERE ae.date < ? and idAnimal = ?";
+
         $stmt_gain = $this->db->prepare($sql_alimenter_detail);
         $stmt_gain->execute([$date, $IdAnimal]);
         $data = $stmt_gain->fetchAll();
-        $sql_poid_max = "select poidsMax from espece_elevage where idAnimal = ?";
+        $sql_poid_max = "select poidsMax from espece_elevage where id = ?";
         $stmt_poid_max = $this->db->prepare($sql_poid_max);
         $stmt_poid_max->execute([$IdAnimal]);
         $poids_max = $stmt_poid_max->fetch()['poidsMax'];
         foreach ($data as $row) {
             $nbPortion = $row['nbPortion'];
             $gain = $row['gain'];
-            if (($poid + $poid * $gain / 100) > $poids_max || ($poid == $poids_max)) {
+            echo $row['gain'];
+            if (($poid + $poid * $gain / 100 * $nbPortion) >= $poids_max || ($poid == $poids_max)) {
                 $poid = $poids_max;
             } else {
                 $poid += $poid * $gain / 100 * $nbPortion;
@@ -102,13 +104,16 @@ class AnimalsModel
         $stmt_nb_jour_manger->execute([$IdAnimal]);
         $nb_jour_manger = $stmt_nb_jour_manger->fetch()['isa'];
 
-        $sql_nb_delta_jour = "select dateDiff(?,'2025-02-03') from espece_elevage as nb_jour";
+        $sql_nb_delta_jour = "select dateDiff(?,'2025-02-03') as nb_jour from espece_elevage as nb_jour";
         $stmt_nb_delta_jour = $this->db->prepare($sql_nb_delta_jour);
-        $stmt_nb_delta_jour->execute(['2025-02-03']);
+        $stmt_nb_delta_jour->execute([$date]);
         $nb_delta_jour = $stmt_nb_delta_jour->fetch()['nb_jour'];
 
         $nb_jour_regime = $nb_delta_jour - $nb_jour_manger;
-        $poid -= $pertePoidsJour * $nb_jour_regime;
+        $poid = $poid -  $pertePoidsJour * $nb_jour_regime;
+        if ($poid < 0) {
+            $poid = 0;
+        }
         return $poid;
     }
     public function listAnimal($idEleveur)

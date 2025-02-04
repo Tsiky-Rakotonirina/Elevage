@@ -26,4 +26,4 @@ $router->post('/achatAlimentation', [$SoldeController, 'achatAlimentation']);
 
 $AnimalsController = new AnimalsController($url);
 $router->get('/nourirView', [$AnimalsController, 'nourirView']);
-$router->post('/nourir', [$AnimalsController, 'nourir']);
+$router->post('/nourrir', [$AnimalsController, 'nourrirAnimal']);

@@ -1,11 +1,11 @@
 <!-- filepath: /c:/xampp/htdocs/Elevage/app/views/frontOffice/alimenter.php -->
 <?php
-if (!isset($Error)) {
-    echo $Error;
-}
-if (!isset($Success)) {
-    echo $Success;
-}
+// if (!isset($Error)) {
+//     echo $Error;
+// }
+// if (!isset($Success)) {
+//     echo $Success;
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,11 +18,11 @@ if (!isset($Success)) {
 
 <body>
     <h1>Alimenter un Animal</h1>
-    <form action="/nourrir" method="post">
+    <form action="nourrir" method="post">
         <label for="IdAnimal">Sélectionnez un Animal:</label>
         <select name="IdAnimal" id="IdAnimal" required>
             <?php foreach ($animals as $animal): ?>
-                <option value="<?= $animal['id'] ?>"><?= $animal['nom'] ?></option>
+                <option value="<?= $animal['id'] ?>"><?= $animal['id'] ?></option>
             <?php endforeach; ?>
         </select>
         <br>

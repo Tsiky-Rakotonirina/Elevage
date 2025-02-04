@@ -127,8 +127,8 @@ class TableauDeBordModel
     public function listeEspeces()
     {
         $query = "select * from espece_elevage";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute();
-        $data = $stmt->fetchAll();
+        $stmt = $this->db->query($query);
+
+        return $data = $stmt->fetchAll();
     }
 }
