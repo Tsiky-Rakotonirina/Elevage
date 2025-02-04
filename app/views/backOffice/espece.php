@@ -39,7 +39,7 @@
                     </td>
                     <td>
                         <div class="container-button">
-                            <button type="submit"><i class="fa-classic fa-solid fa-gear fa-fw"></i></button>
+                            <button id="change" type="submit"><i class="fa-classic fa-solid fa-gear fa-fw"></i></button>
                         </div>
                     </td>
                     <input type="hidden" name="id" value="<?php echo $espece["id"] ?>">

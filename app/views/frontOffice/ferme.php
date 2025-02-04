@@ -13,7 +13,8 @@
                 <input type="date" name="dateMortMax" min="2025-03-02">
                <br><br>
                 <label for="">Auto vente : </label>
-                Oui <input type="radio" name="autoVente" value="true">  Non <input type="radio" name="autoVente" value="false">
+                <span style="font-size:18px; font-weight:500;">Oui </span><input type="radio" name="autoVente" value="true"> 
+                <span style="font-size:18px; font-weight:500;">Non </span> <input type="radio" name="autoVente" value="false">
                <br><br>
                 <label for="">Espece : </label>
                 <select name="espece" id="">
