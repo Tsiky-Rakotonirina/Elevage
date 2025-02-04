@@ -55,6 +55,7 @@ INSERT INTO espece_elevage (id, nom, image, poidsMax, poidsMinVente, nbJourFaim,
 (7, 'Mouton', '/public/assets/images/mouton.jpg', 70, 50, 6, 10, 3, 6),
 (8, 'Poule', '/public/assets/images/poule.jpg', 4, 2, 2, 8, 1, 2);
 
+
 -- Données de test pour la table `animal_elevage`
 INSERT INTO animal_elevage (id, idEleveur, idEspece, poidsInitial) VALUES
 (1, 1, 1, 600),
@@ -78,7 +79,13 @@ INSERT INTO animal_elevage (id, idEleveur, idEspece, poidsInitial, autoVente, da
 INSERT INTO alimentation_elevage (id, nom, prix) VALUES
 (1, 'Foin',20),
 (2, 'Grains',50),
-(3, 'Maïs',10);
+(3, 'Maïs',10),
+(4,'Carotte',30);
+INSERT INTO alimentation_elevage (id, nom, prix) VALUES
+(5, 'Herbe', 15),
+(6, 'Légumes', 35);
+
+
 
 -- Données de test pour la table `detailsAlimentation_elevage`
 INSERT INTO detailsAlimentation_elevage (id, idEspece, idAlimentation, gain) VALUES
@@ -106,6 +113,44 @@ INSERT INTO detailsAlimentation_elevage (id, idEspece, idAlimentation, gain) VAL
 (22, 8, 1, 25),
 (23, 8, 2, 30),
 (24, 8, 3, 35);
+ 
+ INSERT INTO detailsAlimentation_elevage (id, idEspece, idAlimentation, gain) VALUES
+(25, 1,4, 50),
+(26, 1, 5, 40),
+(27, 1, 6, 30),
+(28, 2,4, 50),
+(29, 2, 5, 40),
+(30, 2, 6, 30),
+
+(31, 3,4, 50),
+(32, 3, 5, 40),
+
+(33, 3, 6, 30),
+(34, 4,4, 50),
+
+(35, 4, 5, 40),
+(36, 4, 6, 30),
+
+(37, 5,4, 50),
+(38, 5, 5, 40),
+
+(39, 5, 6, 30),
+(40, 6,4, 50),
+
+(41, 6, 5, 40),
+(42, 6, 6, 30);
+
+INSERT INTO detailsAlimentation_elevage (id, idEspece, idAlimentation, gain) VALUES
+(43,7,4,10),
+
+(44,7,5,80),
+
+(45,7,6,70),
+(46,8,4,10),
+
+(47,8,5,80),
+
+(48,8,6,70);
 
 -- Données de test pour la table `stockAlimentation_elevage`
 INSERT INTO stockAlimentation_elevage (id, idEleveur, idAlimentation, nbPortion) VALUES
