@@ -81,10 +81,10 @@ INSERT INTO transactionAnimal_elevage (id, idAnimal, prix, date, vendu) VALUES
 INSERT INTO alimentation_elevage (id, nom, prix) VALUES
 (1, 'Foin',20),
 (2, 'Grains',50),
-(3, 'Maïs',10),
+(3, 'Mais',10),
 (4,'Carotte',30),
 (5, 'Herbe', 15),
-(6, 'Légumes', 35);
+(6, 'Legumes', 35);
 
 -- Données de test pour la table `detailsAlimentation_elevage`
 INSERT INTO detailsAlimentation_elevage (id, idEspece, idAlimentation, gain) VALUES

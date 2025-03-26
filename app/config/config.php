@@ -32,7 +32,7 @@ $app->path(__DIR__ . $ds . '..' . $ds . '..');
 $app->path(__DIR__ . $ds . '..' . $ds . 'controllers');
 
 // This is where you can set some flight config variables. 
-$app->set('flight.base_url', '/Elevage'); // if this is in a subdirectory, you'll need to change this
+$app->set('flight.base_url', '/ETU003315/Elevage'); // if this is in a subdirectory, you'll need to change this
 $app->set('flight.case_sensitive', false); // if you want case sensitive routes, set this to true
 $app->set('flight.log_errors', true); // if you want to log errors, set this to true
 $app->set('flight.handle_errors', false); // if you want flight to handle errors, set this to true, otherwise Tracy will handle them
@@ -70,9 +70,9 @@ if (Debugger::$showBar && php_sapi_name() !== 'cli') {
 return [
 	'database' => [
 		'host' => 'localhost',
-		'dbname' => 'Elevage',
-		'user' => 'root',
-		'password' => ''
+		'dbname' => 'db_s2_ETU003315',
+		'user' => 'ETU003315',
+		'password' => '8SGhNqh4'
 	],
 ];
 
